@@ -154,6 +154,7 @@ public class RequirementDetailsActivity extends AppCompatActivity implements Res
             tvEventIDData = findViewById(R.id.tvEventIDData);
 
             postRequirementID = getIntent().getStringExtra("requirement_id");
+            Log.d("serajdata",AppURL.getAppURL() + AppURL.getPostReqPreviewUser() + "/" + postRequirementID);
 
             if (postRequirement == null) {
                 getRequirementDetails();
@@ -508,6 +509,7 @@ public class RequirementDetailsActivity extends AppCompatActivity implements Res
             progress.show();
 
             RequestParameter parameter = new RequestParameter();
+            Log.d("serajdata",AppURL.getAppURL() + AppURL.getPostReqPreviewUser() + "/" + postRequirementID);
             parameter.setUri(AppURL.getAppURL() + AppURL.getPostReqPreviewUser() + "/" + postRequirementID);
             getDataFromServer(parameter);
         } catch (Exception e) {

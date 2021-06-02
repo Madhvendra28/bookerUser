@@ -75,8 +75,8 @@ public class ClaimUserHistoryDetialActivity extends AppCompatActivity {
         setContentView(R.layout.activity_claim_user_history_detial);
         final String token = ShPrefUserDetails.getToken(this);
         Log.e("token",token);
-        Log.d("serajdata","User claim detail acti?vity opened");
-        Toast.makeText(activity, "opened", Toast.LENGTH_SHORT).show();
+        Log.d("serajdata","my cuhda");
+
         try {
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
@@ -499,6 +499,7 @@ public class ClaimUserHistoryDetialActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         try {
+                            Log.d("serajdata","inside adapter");
                             Intent intent = new Intent(activity, RequirementDetailsActivity.class);
                             intent.putExtra("requirement_id", postRequirement.getRequirement_id());
                             activity.startActivityForResult(intent,111);
@@ -520,8 +521,11 @@ public class ClaimUserHistoryDetialActivity extends AppCompatActivity {
                                 postRequirement.getRequired_quantity(), postRequirement.getClaim_quantity(), AppURLParams.statusVal1);
                         claimDialogFragment.show(((RequirementListActivity) context).getSupportFragmentManager(), AppURLParams.claimDialogFragment);*/
                         try {
+
+                            Log.d("serajdata","inside adapter button clicked "+postRequirement.getRequirement_id());
                             Intent intent = new Intent(getActivity(),ClaimUserDetailActivity.class);
                             intent.putExtra("claim_requirement_id", postRequirement.getClaim_requirement_id());
+                            intent.putExtra("requirement_id", postRequirement.getRequirement_id());
                             startActivity(intent);
                         } catch (Exception e) {
                             e.printStackTrace();

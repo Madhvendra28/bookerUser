@@ -1,7 +1,14 @@
 <resources>
-    <string name="app_name">Bookkr User</string>
+    <integer name="max_length_pin">4</integer>
 
     <!-- title activity -->
+    <integer name="max_length_mobile">10</integer>
+    <integer name="max_length_ids">20</integer>
+    <integer name="max_length_name">50</integer>
+    <integer name="max_length_email">50</integer>
+    <integer name="max_length_address">100</integer>
+    <integer name="max_length_remark_desc">200</integer>
+    <string name="app_name">Bookkr User</string>
     <string name="title_activity_login">Bookkr User Login</string>
     <string name="title_activity_home">Bookkr User</string>
     <string name="title_activity_profile">User Profile</string>
@@ -9,6 +16,7 @@
     <string name="title_activity_user_sign_up">User Registration</string>
     <string name="title_activity_order_history">Order History</string>
     <string name="title_activity_order_history_details">Order Details</string>
+    1
     <string name="title_activity_profile_edit">Edit Profile</string>
     <string name="title_activity_user_sign_up_otpverification">OTP Verification</string>
     <string name="title_activity_forgot_password">Forgot Password</string>
@@ -16,23 +24,22 @@
     <string name="title_activity_money_request">Money Request</string>
     <string name="title_activity_money_request_create">Create Money Request</string>
     <string name="title_activity_requirement_list">Requirement List</string>
-    1
     <string name="title_activity_requirement_details">Requirement Details</string>
+
+
+    <!-- action bar items -->
     <string name="title_activity_requirement_history_list">Claim History</string>
     <string name="title_activity_user_claim_confirm">Confirm Claim</string>
     <string name="title_activity_user_claim_details">Claim Details</string>
+
+    <!-- error msgs -->
     <string name="title_activity_user_claim_update_details">Update Details</string>
     <string name="title_activity_user_claim_failed">Failed Claim</string>
     <string name="title_activity_user_claim_pay_fail_details">Pay Fail Details</string>
     <string name="title_activity_user_claim_update_shipping">Update Shipping</string>
-
-
-    <!-- action bar items -->
     <string name="action_profile_edit">Edit Profile</string>
     <string name="action_change_password">Change Password</string>
     <string name="action_req_history">Requirement History</string>
-
-    <!-- error msgs -->
     <string name="error_empty_password">Password is required.</string>
     <string name="error_empty_referral_code">Referral Code is required.</string>
     <string name="error_invalid_referral_code">Referral Code is Invalid.</string>
@@ -74,24 +81,25 @@
     <string name="error_try_otp_later">Unable To Send OTP, Please Try Again Later.</string>
     <string name="error_user_deactivated">User account is deactivated, Contact Help Desk.</string>
     <string name="error_empty_otp">OTP Is Required.</string>
+
     <string name="error_otp_mismatch">Entered OTP Is Not Matched.</string>
     <string name="error_attach_profile_image">Profile Image Not Found, Attach Image.</string>
     <string name="error_attach_document_image">Document Image Not Found, Attach Image.</string>
     <string name="error_empty_document_type">Select Document Type.</string>
     <string name="error_empty_document_number">Document Number Is Required.</string>
+
     <string name="error_attach_transaction_image">Transaction Screenshot Image Not Found, Attach Image.</string>
     <string name="error_attach_address_image">Address Image Not Found, Attach Image.</string>
+
 
     <string name="error_empty_transaction_id">Transaction ID Is Required.</string>
     <string name="error_empty_amount">Amount Is Required.</string>
     <string name="error_empty_modal_variant_quantity">Shipping Quantity Of Select Modal Variant Is Required</string>
     <string name="error_modal_variant_not_available">Modal Variant Not Available</string>
-    <string name="error_shipping_expected_date">Select Shipping Expected Date</string>
 
+    <string name="error_shipping_expected_date">Select Shipping Expected Date</string>
     <string name="error_empty_cod_price">COD Price is Required</string>
     <string name="error_empty_payfail_quantity">Pay Fail Quantity is Required</string>
-
-
     <string name="error_empty_user_quantity">User Quantity is Required</string>
     <string name="error_empty_quantity">Quantity is Required</string>
     <string name="error_empty_reason">Reason is Required</string>
@@ -102,72 +110,72 @@
     <string name="error_select_whatsapp_otp_method">Select WhatsApp Number for OTP</string>
     <string name="error_select_nos_order">Select Nos Of Orders</string>
     <string name="error_claim_failed_quantity_mismatch">Failed Quantity Cannot be more than Claimed Quantity.</string>
+
     <string name="error_empty_time_left_mins">Time Left is Required</string>
     <string name="error_select_cod_available">Select COD Available Option</string>
-
     <string name="error_empty_name_on_order">Name On Order is Required</string>
     <string name="error_empty_order_value">Order Value is Required</string>
+
+    <!-- progress bar dialogs -->
     <string name="error_empty_courier">Courier is Required</string>
     <string name="error_empty_tracking_id">Tracking ID is Required</string>
     <string name="error_empty_tracking_link">Tracking Link is Required</string>
-
     <string name="error_empty_courier_mobile_no">Courier Person Contact No. is Required</string>
     <string name="error_empty_delivery_pin">Delivery PIN is Required</string>
     <string name="error_empty_delivery_otp">OTP for Delivery is Required</string>
     <string name="error_select_available_for_online_pay">Please Select Pay Online Available Or Not?</string>
 
-    <!-- progress bar dialogs -->
     <string name="progress_verifying_user">Verifying User</string>
     <string name="progress_change_password">Changing Your Password, Please Wait</string>
     <string name="progress_create_user">Creating User Account, Please Wait</string>
     <string name="progress_updating_profile">Updating User Profile, Please Wait</string>
     <string name="progress_getting_data">Getting Data, Please Wait</string>
+
+    <!-- dialog text -->
     <string name="progress_sending_otp">Sending OTP</string>
     <string name="progress_sending_data">Sending Your Data, Please Wait</string>
 
+    <!-- button text -->
     <string name="ack_account_created">Your Profile Has Been Created Successfully.</string>
     <string name="ack_account_edited">Your Profile Has Been Edited Successfully.</string>
     <string name="ack_data_saved">Your Data Has Been Saved Successfully.</string>
     <string name="ack_otp_sent">OTP Sent Successfully.</string>
     <string name="ack_money_request_added">Money Request Has Been Created Successfully.</string>
-
-    <!-- dialog text -->
     <string name="dialog_change_password">Your Password Has Been Changed Successfully.</string>
     <string name="dialog_user_signout">Are you sure, you want to signout ? </string>
-
-    <!-- button text -->
     <string name="button_login">Login</string>
     <string name="button_change_password">Change Password</string>
     <string name="button_register_user">Register User</string>
     <string name="button_profile_edit">Update Profile</string>
     <string name="button_send_otp">Send OTP</string>
+
     <string name="button_verify_otp">Verify OTP</string>
     <string name="button_forgot_password">Forgot Password?</string>
     <string name="button_resend_otp">Resend OTP</string>
     <string name="button_save_changes">Save Changes</string>
     <string name="button_submit">Submit</string>
+
     <string name="button_create_request">Create Request</string>
     <string name="button_view_requirement">View Requirement</string>
-
     <string name="button_claim_now">Claim Now</string>
     <string name="button_claim">Claim</string>
+
     <string name="button_confirm_claim">Confirm Claim</string>
     <string name="button_update_claim_details">Claim Details</string>
-    <string name="button_claim_failed">Failed To Book</string>
 
+
+    <!-- drawer items -->
+    <string name="button_claim_failed">Failed To Book</string>
     <string name="button_all_sale">All\nSale</string>
     <string name="button_open_sale">Open\nSale</string>
     <string name="button_flash_sale">Flash\nSale</string>
     <string name="button_hide_n_seek">Hide &amp;\nSeek Sale</string>
-
     <string name="button_update_shipping">Update Shipping</string>
     <string name="button_update">Update</string>
-
-
-    <!-- drawer items -->
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
     <string name="drawer_profile">Profile</string>
+
     <string name="drawer_about_us">About 7R</string>
     <string name="drawer_contact_us">Contact Us</string>
     <string name="drawer_privacy_policies">Privacy Policiey | T &amp; C</string>
@@ -175,33 +183,25 @@
     <string name="drawer_order_history">My Order History</string>
     <string name="drawer_rate_us">Rate Us</string>
     <string name="drawer_signout">Signout</string>
-
     <string name="drawer_address_generator">Address Generator</string>
     <string name="drawer_rate_chart">Rate Chart</string>
+
+
+    <!-- others -->
     <string name="drawer_share_earn">Share &amp; Earn</string>
     <string name="drawer_faq">FAQs</string>
     <string name="drawer_wallet_details">Wallet Details</string>
     <string name="drawer_saved_items">Saved Items</string>
     <string name="drawer_drop_price">Drop Price</string>
     <string name="drawer_buy_address_saved">Buy Address Saved Accs</string>
+
     <string name="drawer_feedback_suggestion">Feedback/Suggestion</string>
-
-
-    <!-- others -->
     <string name="allowed_dig_name">qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM .</string>
     <string name="allowed_dig_name_number">qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM .1234567890</string>
     <string name="allowed_dig_mobile">0123456789</string>
     <string name="allowed_dig_emailid">qwertyuiopasdfghjklzxcvbnm1234567890@_.</string>
     <string name="allowed_dig_address">qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM 1234567890 /()._,:-\n</string>
     <string name="allowed_dig_password">1234567890</string>
-
-    <integer name="max_length_pin">4</integer>
-    <integer name="max_length_mobile">10</integer>
-    <integer name="max_length_ids">20</integer>
-    <integer name="max_length_name">50</integer>
-    <integer name="max_length_email">50</integer>
-    <integer name="max_length_address">100</integer>
-    <integer name="max_length_remark_desc">200</integer>
 
     <!-- others -->
     <string name="initial_val">0</string>
@@ -307,6 +307,181 @@
     <string name="status_rto">RTO</string>
     <string name="status_donot_accept">Don\'t Accept</string>
 
+    <string name="change_password_new">New Password</string>
+
+    <!-- chnage password -->
+    <string name="change_password_confirm_new">Confirm New Password</string>
+    <string name="member_since">Member Since</string>
+
+    <!--    promo text -->
+
+    <string name="user_code">User Code</string>
+    <string name="document_verification">Document Verification</string>
+
+    <string name="prompt_document_type">Select Verification Document</string>
+    <string name="document_type">Verification Document</string>
+    <string name="document_number">Id Number</string>
+    <string name="document_image">Id Image</string>
+    <string name="select_sites">Select Sites</string>
+
+    <string name="website">Website</string>
+
+    <string name="cod">COD</string>
+    <string name="pre_paid">Pre-Paid</string>
+
+    <string name="pay_fail">Pay Fail</string>
+    <string name="otp_verified">OTP Verify</string>
+    <string name="payment">Payment</string>
+    <string name="house_number">House Number :</string>
+    <string name="home">Home</string>
+    <string name="shop_tags">Shop Tags :</string>
+
+    <string name="note_for_site">Note For Site</string>
+    <string name="auto_fill_link">Auto-Fill link</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="request_history">Request History</string>
+
+    <string name="bank_details">Bank Details</string>
+    <string name="upi_details">UPI Details</string>
+
+    <string name="bank_name">Bank Name</string>
+    <string name="upi_id">UPI ID</string>
+    <string name="account_type">Account Type</string>
+
+    <string name="account_number">Account Number</string>
+    <string name="account_name">Account Name</string>
+
+    <string name="ifsc_code">IFSC Code</string>
+    <string name="branch">Branch</string>
+    <string name="transaction_id">Transaction ID</string>
+    <string name="transaction_image">Transaction Image</string>
+    <string name="date">Date</string>
+
+    <string name="start_date">Start Date</string>
+    <string name="end_date">End Date</string>
+
+    <string name="ongoing_events">Ongoing</string>
+    <string name="upcoming_events">Upcoming</string>
+    <string name="event">Event</string>
+
+    <string name="event_name">Event#</string>
+    <string name="event_link">Event Link</string>
+
+    <string name="site_name">Site</string>
+    <string name="sale_type">Sale Type</string>
+    <string name="offer_title">Offer Tittle</string>
+    <string name="offer_details">Offer Details</string>
+    <string name="variants">Variant(s)</string>
+    <string name="variant_name">Variant Name</string>
+    <string name="open_sale">Open Sale</string>
+    <string name="flash_sale">Flash Sale</string>
+    <string name="hide_n_seek">Hide &amp; Seek Sale</string>
+
+    <string name="modal_name">Modal</string>
+    <string name="rate_type">Rate Type</string>
+    <string name="select_rate_type">Select Rate Type</string>
+
+
+    <!--    <string name="open_sale">Open Sale</string>-->
+    <string name="select_modal_color">Select Modal Color</string>
+    <string name="modal_color">Modal Color</string>
+    <string name="required_quantity">Required Quantity</string>
+    <string name="claim_quantity">Claim Quantity</string>
+    <string name="confirm_quantity">Confirm Quantity</string>
+    <string name="confirm_claim">Confirm Claim</string>
+
+    <string name="failed_quantity">Failed Quantity</string>
+    <string name="left_quantity_to_update">Left Quantity To Update</string>
+    <string name="dealer_can_pay">Dealer Can Pay</string>
+    <string name="bookkr_charge">Bookkr Charge</string>
+    <string name="wallet_balance">Wallet Balance</string>
+    <string name="payment_on">Payment On</string>
+
+    <string name="shipping">Shipping</string>
+    <string name="same_day">Same Day</string>
+    <string name="within_ndays">Within 3 Days</string>
+
+    <string name="compensation_for_rto">Compensation For RTO</string>
+    <string name="compensation_amount">Compensation Amount</string>
+    <string name="link">Link</string>
+    <string name="precautions">Precautions</string>
+
+    <string name="dealer_note">Dealer Note</string>
+    <string name="live_cliam">Active Claims</string>
+
+    <string name="past_claim">History Claims</string>
+    <string name="requirement">Requirement</string>
+    <string name="update_profile">Update Profile</string>
+
+    <string name="how_to_use">How To Use</string>
+    <string name="chat">Chat</string>
+
+    <string name="claim_available">Claim Available</string>
+
+
+    <string name="claim_requirement">Claiming the Requirement</string>
+    <string name="choose_claim_quantity">Choose the quantity to claim.</string>
+    <string name="preferred_payment_method">Preferred Payment Method</string>
+
+    <string name="can_pay_for_other">Can pay for other Amount (in ₹)</string>
+    <string name="dealer">Dealer</string>
+    <string name="dealer_name">Dealer Name</string>
+    <string name="day_sale_start">Date of Sale Start</string>
+    <string name="day_sale_end">Date of Sale End</string>
+
+    <string name="claimed_quantity_details">Claimed Quantity Details</string>
+    <string name="quantity_for_site">Quantity For Site</string>
+
+    <string name="left_slot">Left Slot</string>
+    <string name="otp_send_on">If OTP Required, Send On</string>
+
+    <string name="prompt_select_otp_method">Select OTP to Receive On</string>
+    <string name="nos_order">No. Of Orders</string>
+    <string name="ask_otp_whatsapp">Ask OTP on WhatsApp Number</string>
+    <string name="total_amount_to_be_paid">Total Amount To Be Paid</string>
+    <string name="time_left">Time Left</string>
+    <string name="mins">Mins</string>
+
+    <string name="cod_available">COD Available</string>
+    <string name="idk">I Don\'t Know</string>
+    <string name="open_orders">Open Orders</string>
+    <string name="invested_amount">Invested Amount</string>
+    <string name="pending_amount">Pending Amount</string>
+    <string name="name_on_order">Name On Order</string>
+    <string name="order_value">Order Value</string>
+    <string name="courier">Courier</string>
+
+    <string name="courier_person_mobile">Courier Person Contact No.</string>
+    <string name="tracking_id">Tracking Id</string>
+    <string name="tracking_link">Tracking Link</string>
+
+
+    <string name="secret_note">Secret Note</string>
+    <string name="advance_paid">Advance Paid</string>
+    <string name="requirement_id">Requirement ID</string>
+    <string name="address_image">Address Image</string>
+    <string name="update_ship_order_status">Update Order Status</string>
+    <string name="update_status">Update Status</string>
+    <string name="pin">Delivery PIN</string>
+    <string name="otp_for_delivery">OTP for Delivery</string>
+    <string name="comment">Comment</string>
+
+    <string name="online_pay_available">Available For Online Pay?</string>
+    <string name="add_note_here">Add note here…</string>
+    <string name="title_activity_event_details">Event Details</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="button_quantity_updates">Quantity Updates</string>
+    <string name="confrim_claim">Confrim Claim</string>
+    <string name="active_claims">Active Claims</string>
+
+    <string name="claim_history">Claim History</string>
+
+    <string name="referalstring">Invite your friends and get ₹50 each</string>
+    <string name="Referalsubmit">Submit</string>
+    <string name="referal_code">Enter Code</string>
     <string-array name="status_ship_order_arrays">
         <item>Shipped</item>
         <item>Reached DC</item>
@@ -318,162 +493,29 @@
         <item>Don\'t Accept</item>
         <!--        <item>Missing Info</item>-->
     </string-array>
-
-    <!-- chnage password -->
-    <string name="change_password_new">New Password</string>
-    <string name="change_password_confirm_new">Confirm New Password</string>
-
-    <!--    promo text -->
-
-    <string name="member_since">Member Since</string>
-    <string name="user_code">User Code</string>
-
-    <string name="document_verification">Document Verification</string>
-    <string name="prompt_document_type">Select Verification Document</string>
-    <string name="document_type">Verification Document</string>
-    <string name="document_number">Id Number</string>
-    <string name="document_image">Id Image</string>
-
     <string-array name="document_type_items">
         <item>Aadhar Card</item>
         <item>PAN Card</item>
         <item>Driving License</item>
         <item>Voter ID Card</item>
     </string-array>
-
-    <string name="select_sites">Select Sites</string>
-    <string name="website">Website</string>
-
-    <string name="cod">COD</string>
-    <string name="pre_paid">Pre-Paid</string>
-    <string name="pay_fail">Pay Fail</string>
-    <string name="otp_verified">OTP Verify</string>
-    <string name="payment">Payment</string>
     <string-array name="payment_type_arrays">
         <item>COD</item>
         <item>Pre-Paid</item>
         <item>Pay Fail</item>
         <item>OTP Verify</item>
     </string-array>
-
-    <string name="house_number">House Number :</string>
-    <string name="home">Home</string>
-
-    <string name="shop_tags">Shop Tags :</string>
-    <string name="note_for_site">Note For Site</string>
-    <string name="auto_fill_link">Auto-Fill link</string>
-
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-
-    <string name="request_history">Request History</string>
-    <string name="bank_details">Bank Details</string>
-    <string name="upi_details">UPI Details</string>
-
-    <string name="bank_name">Bank Name</string>
-    <string name="upi_id">UPI ID</string>
-
-    <string name="account_type">Account Type</string>
-    <string name="account_number">Account Number</string>
-    <string name="account_name">Account Name</string>
-    <string name="ifsc_code">IFSC Code</string>
-    <string name="branch">Branch</string>
-
-    <string name="transaction_id">Transaction ID</string>
-    <string name="transaction_image">Transaction Image</string>
-
-    <string name="date">Date</string>
-    <string name="start_date">Start Date</string>
-    <string name="end_date">End Date</string>
-
-    <string name="ongoing_events">Ongoing</string>
-    <string name="upcoming_events">Upcoming</string>
-
-    <string name="event">Event</string>
-    <string name="event_name">Event#</string>
-    <string name="event_link">Event Link</string>
-    <string name="site_name">Site</string>
-    <string name="sale_type">Sale Type</string>
-    <string name="offer_title">Offer Tittle</string>
-    <string name="offer_details">Offer Details</string>
-    <string name="variants">Variant(s)</string>
-    <string name="variant_name">Variant Name</string>
-
-    <string name="open_sale">Open Sale</string>
-    <string name="flash_sale">Flash Sale</string>
-    <string name="hide_n_seek">Hide &amp; Seek Sale</string>
-
-
-    <!--    <string name="open_sale">Open Sale</string>-->
-    <string name="modal_name">Modal</string>
-    <string name="rate_type">Rate Type</string>
     <string-array name="rate_type_arrays">
         <item>Approx</item>
         <item>Fix</item>
         <item>Minimum</item>
         <item>Coins Only</item>
     </string-array>
-    <string name="select_rate_type">Select Rate Type</string>
-    <string name="select_modal_color">Select Modal Color</string>
-    <string name="modal_color">Modal Color</string>
-
-    <string name="required_quantity">Required Quantity</string>
-    <string name="claim_quantity">Claim Quantity</string>
-    <string name="confirm_quantity">Confirm Quantity</string>
-    <string name="confirm_claim">Confirm Claim</string>
-    <string name="failed_quantity">Failed Quantity</string>
-    <string name="left_quantity_to_update">Left Quantity To Update</string>
-
-    <string name="dealer_can_pay">Dealer Can Pay</string>
-    <string name="bookkr_charge">Bookkr Charge</string>
-    <string name="wallet_balance">Wallet Balance</string>
-
-    <string name="payment_on">Payment On</string>
-    <string name="shipping">Shipping</string>
-    <string name="same_day">Same Day</string>
-    <string name="within_ndays">Within 3 Days</string>
-
-    <string name="compensation_for_rto">Compensation For RTO</string>
-    <string name="compensation_amount">Compensation Amount</string>
-
-    <string name="link">Link</string>
-    <string name="precautions">Precautions</string>
-    <string name="dealer_note">Dealer Note</string>
-
-    <string name="live_cliam">Active Claims</string>
-    <string name="past_claim">History Claims</string>
-
-    <string name="requirement">Requirement</string>
-
-
-    <string name="update_profile">Update Profile</string>
-    <string name="how_to_use">How To Use</string>
-    <string name="chat">Chat</string>
-
-    <string name="claim_available">Claim Available</string>
-    <string name="claim_requirement">Claiming the Requirement</string>
-    <string name="choose_claim_quantity">Choose the quantity to claim.</string>
-    <string name="preferred_payment_method">Preferred Payment Method</string>
-    <string name="can_pay_for_other">Can pay for other Amount (in ₹)</string>
-
-    <string name="dealer">Dealer</string>
-    <string name="dealer_name">Dealer Name</string>
-
-    <string name="day_sale_start">Date of Sale Start</string>
-    <string name="day_sale_end">Date of Sale End</string>
-
-    <string name="claimed_quantity_details">Claimed Quantity Details</string>
-    <string name="quantity_for_site">Quantity For Site</string>
-    <string name="left_slot">Left Slot</string>
-    <string name="otp_send_on">If OTP Required, Send On</string>
-    <string name="prompt_select_otp_method">Select OTP to Receive On</string>
     <string-array name="otp_method_arrays">
         <item>Any</item>
         <item>Mobile No.</item>
         <item>Email ID</item>
     </string-array>
-
-    <string name="nos_order">No. Of Orders</string>
     <string-array name="nos_order_arrays">
         <item>1</item>
         <item>2</item>
@@ -481,48 +523,6 @@
         <item>4</item>
         <item>5</item>
     </string-array>
-    <string name="ask_otp_whatsapp">Ask OTP on WhatsApp Number</string>
-    <string name="total_amount_to_be_paid">Total Amount To Be Paid</string>
-    <string name="time_left">Time Left</string>
-    <string name="mins">Mins</string>
-    <string name="cod_available">COD Available</string>
-    <string name="idk">I Don\'t Know</string>
-
-    <string name="open_orders">Open Orders</string>
-    <string name="invested_amount">Invested Amount</string>
-    <string name="pending_amount">Pending Amount</string>
-
-
-    <string name="name_on_order">Name On Order</string>
-    <string name="order_value">Order Value</string>
-    <string name="courier">Courier</string>
-    <string name="courier_person_mobile">Courier Person Contact No.</string>
-    <string name="tracking_id">Tracking Id</string>
-    <string name="tracking_link">Tracking Link</string>
-    <string name="secret_note">Secret Note</string>
-    <string name="advance_paid">Advance Paid</string>
-    <string name="requirement_id">Requirement ID</string>
-
-    <string name="address_image">Address Image</string>
-    <string name="update_ship_order_status">Update Order Status</string>
-    <string name="update_status">Update Status</string>
-
-    <string name="pin">Delivery PIN</string>
-    <string name="otp_for_delivery">OTP for Delivery</string>
-    <string name="comment">Comment</string>
-    <string name="online_pay_available">Available For Online Pay?</string>
-
-    <string name="add_note_here">Add note here…</string>
-
-    <string name="title_activity_event_details">Event Details</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="button_quantity_updates">Quantity Updates</string>
-    <string name="confrim_claim">Confrim Claim</string>
-    <string name="active_claims">Active Claims</string>
-    <string name="claim_history">Claim History</string>
-    <string name="referalstring">Invite your friends and get ₹50 each</string>
-    <string name="Referalsubmit">Submit</string>
-    <string name="referal_code">Enter Code</string>
 
 
 </resources>

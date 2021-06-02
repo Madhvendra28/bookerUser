@@ -43,7 +43,7 @@ public class ClaimUserDetailActivity extends AppCompatActivity {
     private CoordinatorLayout coordinatorLayout;
     private int requestFor = -1;
     private ProgressDialog progress;
-    String claimedId;
+    String claimedId,reqId;
     private LinearLayout requirement_list_LL_container, nodata_LL;
     private final String TAG = "Requirement List";
     private TextView nodata_textview;
@@ -64,6 +64,9 @@ public class ClaimUserDetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         claimedId = getIntent().getExtras().getString("claim_requirement_id");
+        reqId = getIntent().getExtras().getString("requirement_id");
+
+        Log.d("serajdata","cuda req id"+reqId+ " cid "+claimedId);
 
         nodata_LL = findViewById(R.id.nodata_LL);
         nodata_textview = findViewById(R.id.nodata_textview);
@@ -94,7 +97,9 @@ public class ClaimUserDetailActivity extends AppCompatActivity {
         btnConfirmQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent confirm = new Intent(ClaimUserDetailActivity.this,UserClaimConfirmActivity.class);
+                Intent confirm = new Intent(ClaimUserDetailActivity.this,MdConfirmClaimActivity.class);
+                confirm.putExtra("claim_requirement_id", claimedId);
+                confirm.putExtra("requirement_id", reqId);
                 startActivity(confirm);
             }
         });

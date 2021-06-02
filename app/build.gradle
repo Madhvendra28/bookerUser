@@ -27,6 +27,11 @@ android {
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/LICENSE'
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -86,9 +91,9 @@ dependencies {
 
     implementation 'com.github.mmoamenn:LuckyWheel_Android:0.3.0'
 
-//    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
-//    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
-//    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.2'
 //    implementation 'com.google.code.gson:gson:2.8.6'
 }
 apply plugin: 'com.google.gms.google-services'

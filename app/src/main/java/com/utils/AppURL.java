@@ -46,6 +46,12 @@ public class AppURL {
     private static final String eventPreviewUser = appURL+"eventPreviewUser";
     private static final String postReqPreviewUser = "postReqPreviewUser";
     private static final String userClaimedDetails = "userClaimedDetails";
+
+    public static String getUserConfirmClaimedDetails() {
+        return userConfirmClaimedDetails;
+    }
+
+    private static final String userConfirmClaimedDetails = "confirmClaimDetails";
     private static final String userSingleWallet =appURL+ "userSingleWallet";
 
 //    methods here ----------------------------------------------------
