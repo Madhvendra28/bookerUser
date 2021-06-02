@@ -74,7 +74,7 @@ public class HomeActivity extends AppCompatActivity {
     private ProgressDialog progress;
     private static final String TAG = "Home Activity";
     private int requestFor = -1; // 1 = check status, 2 = merchant list,
-
+    //hii
     private DashboardHomeFragment dashboardHomeFragment;
 
     private String userStatus = null, queryStr = "";
