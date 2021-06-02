@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/std2_min_height"
+    android:paddingTop="@dimen/std_content_padding">
+
+    <LinearLayout
+        android:id="@+id/drawer_header_LL_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="@dimen/mini2_min_width"
+            android:layout_height="@dimen/mini2_min_height"
+            android:gravity="center_vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/drawer_header_imageview_image"
+                android:layout_width="@dimen/std_img_width"
+                android:layout_height="@dimen/std_img_height"
+                android:layout_marginStart="@dimen/std_view_margin"
+                android:src="@drawable/avatar"
+                app:civ_border_color="@color/bg_color_black" />
+
+            <ImageView
+                android:id="@+id/drawer_header_imageview_warning"
+                android:layout_width="@dimen/milli_img_width"
+                android:layout_height="@dimen/milli_img_height"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/milli_view_margin"
+                android:src="@drawable/warning" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/mini_view_margin"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/drawer_header_textview_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/barlow_condensed_semobold"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/std_text_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/drawer_header_textview_code_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/barlow_condensed_semobold"
+                    android:text="@string/user_code"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/mini_text_size" />
+
+                <TextView
+                    android:id="@+id/drawer_header_textview_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/mini_view_margin"
+                    android:fontFamily="@font/barlow_condensed_semobold"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/std_text_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/barlow_condensed_semobold"
+                    android:text="@string/wallet_balance"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/mini_text_size" />
+
+                <TextView
+                    android:id="@+id/drawer_header_textview_wallet_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/mini_view_margin"
+                    android:fontFamily="@font/barlow_condensed_semobold"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/std_text_size" />
+            </LinearLayout>
+
+            <!--<LinearLayout
+                android:id="@+id/linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginRight="@dimen/big_view_margin"
+                android:layout_toEndOf="@+id/rlprofilee"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/barlow_condensed_semobold"
+                    android:letterSpacing="0.04"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/mini_view_margin"
+                    android:layout_toEndOf="@id/tvCode">
+
+                    <TextView
+                        android:id="@+id/ratingtxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/barlow_condensed_semobold"
+                        android:letterSpacing="0.04"
+                        android:text="4.5"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/holo_blue_light"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="@dimen/micro_img_width"
+                        android:layout_height="@dimen/micro_img_height"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/ratingtxt"
+                        android:src="@drawable/ic_yellow_rate" />
+                </RelativeLayout>
+            </LinearLayout>-->
+
+            <!--<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/mini_view_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/drawer_header_textview_ranking_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/barlow_condensed_semobold"
+                    android:text="@string/ranking"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/mini_text_size" />
+
+                <TextView
+                    android:id="@+id/drawer_header_textview_ranking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/barlow_condensed_semobold"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/std_text_size" />
+            </LinearLayout>-->
+
+            <!--<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/mini_view_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/drawer_header_textview_dealer_since_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/barlow_condensed_semobold"
+                    android:text="@string/dealer_since"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/mini_text_size" />
+
+                <TextView
+                    android:id="@+id/drawer_header_textview_dealer_since"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/barlow_condensed_semobold"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/std_text_size" />
+            </LinearLayout>-->
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mini_divider_height"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/std_view_margin"
+        android:layout_marginTop="@dimen/std_view_margin"
+        android:layout_marginRight="@dimen/std_view_margin"
+        android:background="@color/bg_color_black" />
+</RelativeLayout>

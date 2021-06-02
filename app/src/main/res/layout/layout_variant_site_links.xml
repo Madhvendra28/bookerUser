@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="20dp">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listSiteNames"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listSiteLinks"
+        android:layout_width="match_parent"
+        tools:listitem="@layout/layout_site_link"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listSiteNames"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/tvNoDataAvailable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="No Data Found"
+        android:visibility="gone" />
+
+</RelativeLayout>

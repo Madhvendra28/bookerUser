@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:orientation="vertical"
+    app:cardCornerRadius="4dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/relativeEvent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <TextView
+                    android:id="@+id/tvSaleType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/micro2_view_margin"
+                    android:gravity="center"
+                    android:text="Sale Type"
+                    android:textColor="@color/textColorBlack"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/logoImg"
+                        android:layout_width="100dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/shopping" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/rate_chart_textview_modal_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Model Name"
+                    android:lines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/textColorBlack"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/rate_chart_textview_start_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/micro2_view_margin"
+                    android:gravity="center"
+                    android:text="Start Date"
+                    android:textColor="@color/textColorBlack"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/rate_chart_textview_end_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/micro2_view_margin"
+                    android:lines="2"
+                    android:gravity="center"
+                    android:ellipsize="end"
+                    android:text="End Date"
+                    android:textColor="@color/textColorBlack" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

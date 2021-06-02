@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="@dimen/mini_content_padding">
+
+    <TextView
+        android:id="@+id/adapter_textview_variant_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/open_sans_semibold"
+        android:gravity="center"
+        android:textColor="@color/textColorBlack"
+        android:textSize="@dimen/std_text_size" />
+
+    <TextView
+        android:id="@+id/adapter_textview_cod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/open_sans_semibold"
+        android:gravity="center"
+        android:textColor="@color/textColorBlack"
+        android:textSize="@dimen/std_text_size" />
+
+    <TextView
+        android:id="@+id/adapter_textview_pre_paid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/open_sans_semibold"
+        android:gravity="center"
+        android:textColor="@color/textColorBlack"
+        android:textSize="@dimen/std_text_size" />
+
+    <TextView
+        android:id="@+id/adapter_textview_pay_fail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/open_sans_semibold"
+        android:gravity="center"
+        android:textColor="@color/textColorBlack"
+        android:textSize="@dimen/std_text_size" />
+
+    <TextView
+        android:id="@+id/adapter_textview_otp_verify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/open_sans_semibold"
+        android:gravity="center"
+        android:textColor="@color/textColorBlack"
+        android:textSize="@dimen/std_text_size" />
+</LinearLayout>

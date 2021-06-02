@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/adapter_LL_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/mini_content_padding">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/milli_view_margin"
+        android:elevation="@dimen/cardview_elevation"
+        app:cardBackgroundColor="@color/bg_card_color_light_grey"
+        app:cardCornerRadius="@dimen/cardview_radius_std_3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/mini_content_padding"
+                android:paddingTop="@dimen/mini_content_padding"
+                android:paddingRight="@dimen/mini_content_padding"
+                android:paddingBottom="@dimen/mini_content_padding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="left|center_vertical"
+                        android:text="@string/date"
+                        android:textColor="@color/textColorBlack"
+                        android:textSize="@dimen/mini_text_size" />
+
+                    <TextView
+                        android:id="@+id/tvDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="left|center_vertical"
+                        android:textColor="@color/textColorBlack"
+                        android:textSize="@dimen/std_text_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="left|center_vertical"
+                        android:text="@string/amount"
+                        android:textColor="@color/textColorBlack"
+                        android:textSize="@dimen/mini_text_size" />
+
+                    <TextView
+                        android:id="@+id/adapter_textview_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="left|center_vertical"
+                        android:textColor="@color/textColorBlack"
+                        android:textSize="@dimen/std_text_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="left|center_vertical"
+                        android:text="@string/transaction_id"
+                        android:textColor="@color/textColorBlack"
+                        android:textSize="@dimen/mini_text_size" />
+
+                    <TextView
+                        android:id="@+id/adapter_textview_transaction_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="left|center_vertical"
+                        android:textColor="@color/textColorBlack"
+                        android:textSize="@dimen/std_text_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/adapter_LL_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="left|center_vertical"
+                        android:text="@string/reason_of_cancellation"
+                        android:textColor="@color/textColorBlack"
+                        android:textSize="@dimen/mini_text_size" />
+
+                    <TextView
+                        android:id="@+id/adapter_textview_message"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="left|center_vertical"
+                        android:textColor="@color/textColorBlack"
+                        android:textSize="@dimen/std_text_size" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/adapter_LL_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_color_grey"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/mini_content_padding">
+
+                <TextView
+                    android:id="@+id/adapter_textview_status_tag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/status"
+                    android:textColor="@color/textColorWhite"
+                    android:textSize="@dimen/mini_text_size" />
+
+                <TextView
+                    android:id="@+id/adapter_textview_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/textColorWhite"
+                    android:textSize="@dimen/std_text_size" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

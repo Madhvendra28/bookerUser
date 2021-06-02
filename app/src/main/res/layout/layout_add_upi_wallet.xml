@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/mini_view_margin"
+    android:gravity="center"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textUpiID"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        app:cardElevation="@dimen/cardview_no_elevation">
+
+        <EditText
+            android:id="@+id/edtUpiID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="@string/allowed_dig_name_number"
+            android:hint="UPI ID"
+            android:maxLength="@integer/max_length_name"
+            android:padding="@dimen/mini_content_padding"
+            android:singleLine="true"
+            android:textColor="@android:color/background_dark"
+            android:textSize="@dimen/std_text_size" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:id="@+id/tvIdEndWith"
+        android:textColor="@color/textColorBlack"
+        android:textSize="@dimen/std_text_size" />
+
+    <ImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_margin="4dp"
+        android:id="@+id/imgDelete"
+        android:src="@drawable/ic_delete"
+        app:tint="@color/textColorRed" />
+</LinearLayout>

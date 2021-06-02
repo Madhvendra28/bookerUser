@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFC80E</color>
+    <color name="colorPrimaryDark">#FFC80E</color>
+    <color name="colorAccent">#448AFF</color>
+
+    <color name="textColorPrimary">#FFC80E</color>
+    <color name="textColorBlack">#000000</color>
+    <color name="textColorWhite">#FFFFFF</color>
+    <color name="textColorAccent">#448AFF</color>
+    <color name="textColorGrey">#78909C</color>
+    <color name="textColorRed">#F44336</color>
+    <color name="textColorGreen">#4CAF50</color>
+
+    <color name="bg_color_primary">#FFC80E</color>
+    <color name="bg_color_accent">#448AFF</color>
+    <color name="bg_color_grey_50">#FAFAFA</color>
+    <color name="bg_color_grey_100">#e1e3e1</color>
+    <color name="bg_color_white">#FFFFFF</color>
+    <color name="bg_color_green">#4CAF50</color>
+    <color name="bg_color_red">#F44336</color>
+    <color name="bg_color_blue">#29B6F6</color>
+    <color name="bg_color_yellow">#F3C500</color>
+    <color name="bg_color_grey">#78909C</color>
+    <color name="bg_color_black">#000000</color>
+
+    <color name="trans_accent">#66F3C500</color>
+
+    <!-- lib color-->
+    <color name="black_overlay">#66000000</color>
+
+    <color name="edittextColor">#F5F5F5</color>
+    <color name="tab_background_selected">#fdde6c</color>
+    <color name="tab_background_unselected">#f2f2f2</color>
+    <color name="greenColor">#5DED5A</color>
+    <color name="greyDarkColor">#C5C5C5</color>
+    <color name="icon_color">#5a5a5a</color>
+
+    <color name="bg_card_color_light_grey">#EAEAEA</color>
+    <color name="bg_card_color">#F0F0F0</color>
+    <color name="bg_card_color_2">#F5F5F5</color>
+    <color name="bg_card_color_3">#D3D3D3</color>
+    <color name="bg_card_color_4">#828282</color>
+    <color name="bg_card_color_5">#DCDCDC</color>
+</resources>

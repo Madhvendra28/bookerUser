@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="1dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/imgUpi"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_margin="4dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_person" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/imgShare"
+            android:layout_toEndOf="@id/imgUpi"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name : "
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name :"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llMobileNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mobile No : "
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No :"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llUpiID"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="UPI Id : "
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvUpiId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="UPI Id :\nfjsdfjd\nfodihfodf\nfudhf"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgStared"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_default_unselected" />
+
+        <ImageView
+            android:id="@+id/imgShare"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_below="@+id/imgStared"
+            android:layout_alignParentEnd="true"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/icon_share" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

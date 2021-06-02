@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/user_options"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/drawer_profile"
+            android:checked="false"
+            android:icon="@drawable/ic_person"
+            android:title="@string/drawer_profile" />
+
+        <item
+            android:id="@+id/drawer_claim_history"
+            android:checked="false"
+            android:icon="@drawable/ic_person"
+            android:title="Claim History" />
+
+        <item
+            android:id="@+id/drawer_rate_chart"
+            android:checked="false"
+            android:visible="false"
+            android:icon="@drawable/ic_visibility"
+            android:title="@string/drawer_rate_chart" />
+
+        <item
+            android:id="@+id/drawer_wallet_details"
+            android:icon="@drawable/ic_fastfood"
+            android:title="@string/drawer_wallet_details" />
+
+        <item
+            android:id="@+id/drawer_address_generator"
+            android:visible="false"
+            android:checked="false"
+            android:icon="@drawable/ic_fastfood"
+            android:title="@string/drawer_address_generator" />
+
+        <item
+            android:id="@+id/drawer_order_history"
+            android:checked="false"
+            android:visible="false"
+            android:icon="@drawable/ic_history"
+            android:title="@string/drawer_order_history" />
+
+        <item
+            android:id="@+id/drawer_saved_items"
+            android:visible="false"
+            android:checked="false"
+            android:icon="@drawable/ic_fastfood"
+            android:title="@string/drawer_saved_items" />
+
+        <item
+            android:id="@+id/drawer_drop_price"
+            android:checked="false"
+            android:visible="false"
+            android:icon="@drawable/ic_fastfood"
+            android:title="@string/drawer_drop_price" />
+
+        <item
+            android:id="@+id/drawer_buy_address_saved"
+            android:visible="false"
+            android:checked="false"
+            android:icon="@drawable/ic_visibility"
+            android:title="@string/drawer_buy_address_saved" />
+
+        <item
+            android:id="@+id/drawer_feedback_suggestion"
+            android:checked="false"
+            android:visible="false"
+            android:icon="@drawable/ic_visibility"
+            android:title="@string/drawer_feedback_suggestion" />
+    </group>
+
+    <group
+        android:id="@+id/about_option"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/drawer_about_us"
+            android:checked="false"
+            android:icon="@drawable/ic_business_center"
+            android:title="@string/drawer_about_us" />
+
+        <item
+            android:id="@+id/drawer_contact_us"
+            android:checked="false"
+            android:icon="@drawable/ic_call"
+            android:title="@string/drawer_contact_us" />
+
+        <item
+            android:id="@+id/drawer_privacy_policies"
+            android:checked="false"
+            android:icon="@drawable/ic_business_center"
+            android:title="@string/drawer_privacy_policies" />
+
+        <item
+            android:id="@+id/drawer_faq"
+            android:checked="false"
+            android:icon="@drawable/ic_supervisor_account"
+            android:title="@string/drawer_faq" />
+    </group>
+
+    <group
+        android:id="@+id/other_option"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/drawer_rate_us"
+            android:checked="false"
+            android:icon="@drawable/ic_star_rate"
+            android:title="@string/drawer_rate_us" />
+
+        <item
+            android:id="@+id/drawer_share_earn"
+            android:checked="false"
+            android:icon="@drawable/ic_supervisor_account"
+            android:title="@string/drawer_share_earn" />
+
+        <item
+            android:id="@+id/drawer_signout"
+            android:checked="false"
+            android:icon="@drawable/ic_power_settings_new"
+            android:title="@string/drawer_signout" />
+    </group>
+</menu>

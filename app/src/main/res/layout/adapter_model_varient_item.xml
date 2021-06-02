@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/mini_content_padding"
+    android:paddingVertical="@dimen/milli2_content_padding">
+
+    <TextView
+        android:id="@+id/adapter_textview_modal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/mini_content_padding"
+        android:text="@string/na"
+        android:textColor="@color/textColorBlack"
+        android:textStyle="bold" />
+</LinearLayout>

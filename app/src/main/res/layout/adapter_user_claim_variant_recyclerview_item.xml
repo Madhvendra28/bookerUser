@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="@dimen/mini_content_padding">
+
+    <TextView
+        android:id="@+id/adapter_textview_variant_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/open_sans_semibold"
+        android:gravity="center"
+        android:textColor="@color/textColorBlack"
+        android:textSize="@dimen/std_text_size" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/adapter_edittext_cod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="@string/allowed_dig_mobile"
+            android:gravity="center"
+            android:hint="@string/cod"
+            android:inputType="phone"
+            android:maxLength="@integer/max_length_ids"
+            android:singleLine="true"
+            android:textSize="@dimen/std_text_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/adapter_edittext_pre_paid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="@string/allowed_dig_mobile"
+            android:gravity="center"
+            android:hint="@string/pre_paid"
+            android:inputType="phone"
+            android:maxLength="@integer/max_length_ids"
+            android:singleLine="true"
+            android:textSize="@dimen/std_text_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/adapter_edittext_pay_fail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:digits="@string/allowed_dig_mobile"
+            android:editable="false"
+            android:gravity="center"
+            android:hint="@string/pay_fail"
+            android:inputType="phone"
+            android:maxLength="@integer/max_length_ids"
+            android:singleLine="true"
+            android:textSize="@dimen/std_text_size" />
+
+        <TextView
+            android:id="@+id/adapter_textview_pay_fail_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/update"
+            android:textColor="@android:color/background_dark" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,87 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="mini_text_size">12sp</dimen>
+    <dimen name="std_text_size">15sp</dimen>
+    <dimen name="std2_text_size">17sp</dimen>
+    <dimen name="big_text_size">20sp</dimen>
+    <dimen name="big2_text_size">25sp</dimen>
+
+    <dimen name="micro2_view_margin">2dp</dimen>
+    <dimen name="micro1_view_margin">3dp</dimen>
+    <dimen name="milli_view_margin">5dp</dimen>
+    <dimen name="mini_view_margin">10dp</dimen>
+    <dimen name="std_view_margin">15dp</dimen>
+    <dimen name="big_view_margin">20dp</dimen>
+    <dimen name="bigger_view_margin">25dp</dimen>
+    <dimen name="biggest_view_margin">40dp</dimen>
+    <dimen name="biggest1_view_margin">50dp</dimen>
+    <dimen name="biggest2_view_margin">70dp</dimen>
+
+    <dimen name="milli_content_padding">2dp</dimen>
+    <dimen name="milli2_content_padding">5dp</dimen>
+    <dimen name="mini_content_padding">10dp</dimen>
+    <dimen name="std_content_padding">15dp</dimen>
+    <dimen name="big_content_padding">20dp</dimen>
+    <dimen name="bigger_content_padding">25dp</dimen>
+
+    <dimen name="milli_img_width">20dp</dimen>
+    <dimen name="milli_img_height">20dp</dimen>
+    <dimen name="milli2_img_width">30dp</dimen>
+    <dimen name="milli2_img_height">30dp</dimen>
+    <dimen name="mini_img_height">40dp</dimen>
+    <dimen name="std_img_width">70dp</dimen>
+    <dimen name="std_img_height">70dp</dimen>
+    <dimen name="std2_img_width">100dp</dimen>
+    <dimen name="std2_img_height">100dp</dimen>
+    <dimen name="std2b_img_width">130dp</dimen>
+    <dimen name="std2b_img_height">130dp</dimen>
+    <dimen name="big_img_height">200dp</dimen>
+
+
+    <dimen name="micro3_min_height">30dp</dimen>
+    <dimen name="milli_min_width">40dp</dimen>
+    <dimen name="milli_min_height">40dp</dimen>
+    <dimen name="milli2_min_height">50dp</dimen>
+    <dimen name="mini_min_height">60dp</dimen>
+    <dimen name="mini1_min_width">70dp</dimen>
+    <dimen name="mini1_min_height">70dp</dimen>
+    <dimen name="mini2_min_width">80dp</dimen>
+    <dimen name="mini2_min_height">80dp</dimen>
+    <dimen name="std2_min_height">150dp</dimen>
+    <dimen name="std2_min_width">150dp</dimen>
+    <dimen name="std3_img_height">180dp</dimen>
+    <dimen name="big3_min_height">250dp</dimen>
+    <dimen name="big4_min_height">280dp</dimen>
+    <dimen name="big6_min_width">330dp</dimen>
+
+
+    <dimen name="mini_divider_height">1dp</dimen>
+    <dimen name="view_height">0.5dp</dimen>
+    <dimen name="no_divider_height">0dp</dimen>
+
+
+    <!-- lib dimens -->
+    <dimen name="tab_height">48dp</dimen>
+    <dimen name="toolbar_elevation">4dp</dimen>
+
+    <!-- dateTitleLayout -->
+    <!--<dimen name="dateTitlePaddingBottom">5dp</dimen>-->
+    <!-- weekLayout -->
+    <!-- weekRowLayout -->
+    <!--<dimen name="week_bottom_padding">5dp</dimen>-->
+    <!-- Day of the month -->
+    <!--New dimens-->
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="cardview_radius">3dp</dimen>
+    <dimen name="cardview_radius_std">5dp</dimen>
+    <dimen name="cardview_radius_std_2">10dp</dimen>
+    <dimen name="cardview_radius_std_3">15dp</dimen>
+    <dimen name="cardview_radius_big">20dp</dimen>
+    <dimen name="cardview_elevation">3dp</dimen>
+    <dimen name="cardview_no_elevation">0dp</dimen>
+
+</resources>

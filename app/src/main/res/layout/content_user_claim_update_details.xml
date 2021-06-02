@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".UserClaimUpdateDetailsActivity"
+    tools:showIn="@layout/activity_user_claim_update_details">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/std_content_padding">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_semibold"
+                android:gravity="center"
+                android:text="@string/claimed_quantity_details"
+                android:textColor="@color/textColorBlack"
+                android:textSize="@dimen/std2_text_size" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/std_view_margin"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:text="@string/claim_quantity"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/mini_text_size" />
+
+                <TextView
+                    android:id="@+id/claim_details_textview_claimed_quantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/std_view_margin"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:text="@string/confirm_quantity"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/mini_text_size" />
+
+                <TextView
+                    android:id="@+id/claim_details_textview_confirm_quantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/std_view_margin"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:text="@string/failed_quantity"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/mini_text_size" />
+
+                <TextView
+                    android:id="@+id/claim_details_textview_failed_quantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/claim_details_button_claim_failed"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:onClick="userFailedClaim"
+                    android:padding="@dimen/mini_content_padding"
+                    android:text="@string/button_claim_failed"
+                    android:textAllCaps="false"
+                    android:textColor="@color/bg_color_white"
+                    android:textSize="@dimen/std_text_size"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/std_view_margin"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:text="@string/left_quantity_to_update"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/mini_text_size" />
+
+                <TextView
+                    android:id="@+id/claim_details_textview_left_quantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/std_view_margin"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_sites"
+                    android:textColor="@color/textColorBlack"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/claim_details_recycleview_sites"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:scrollbars="none" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/claim_details_container_FL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="@dimen/std_view_margin">
+
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

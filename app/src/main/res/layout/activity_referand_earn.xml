@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReferandEarn"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/referal" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/referalstring"
+        android:textSize="24sp"
+        android:paddingLeft="15dp"
+        android:textColor="@color/textColorBlack"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Share the code below or ask them to enter it after they sign up. Your coupon will apear in the refer and earn section."
+        android:textSize="14sp"
+        android:paddingLeft="28dp"
+        android:paddingRight="28dp"
+        android:layout_marginTop="15dp"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="For your friend to recieve their coupon, ensure that they use your referral during signup."
+        android:textSize="14sp"
+        android:paddingLeft="28dp"
+        android:paddingRight="28dp"
+        android:layout_marginTop="15dp"/>
+
+    <FrameLayout
+        android:id="@+id/container_with_dotted_border"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:padding="14dp"
+        android:background="@drawable/dotted_border"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/referal"
+            android:text="GMDS234"
+            android:textStyle="bold"
+            android:textColor="@color/textColorBlack"
+            android:textSize="22sp"
+            android:layout_gravity="left"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/copyReferal"
+            android:text="Copy code"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp"
+            android:layout_gravity="right"/>
+
+    </FrameLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle"
+        android:text="Invite Friends"
+        android:textColor="@color/textColorWhite"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:layout_margin="25dp"
+        android:padding="10dp"
+        android:onClick="invite"/>
+
+
+</LinearLayout>

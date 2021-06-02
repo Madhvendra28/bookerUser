@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/std_view_margin"
+    android:elevation="@dimen/cardview_elevation"
+    android:orientation="vertical"
+    app:cardBackgroundColor="@color/bg_card_color_light_grey"
+    app:cardCornerRadius="@dimen/cardview_radius_std_3">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/mini_content_padding">
+
+        <TextView
+            android:id="@+id/adapter_textview_vaiant_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/variant_name"
+            android:textColor="@color/textColorBlack"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/open_sans_semibold"
+                android:text="@string/price"
+                android:textColor="@color/textColorBlack"
+                android:textSize="@dimen/mini_text_size" />
+
+            <TextView
+                android:id="@+id/adapter_textview_vaiant_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:fontFamily="@font/open_sans_semibold"
+                android:textColor="@color/textColorBlack"
+                android:textSize="@dimen/std_text_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/mini_view_margin"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/modal_color"
+                    android:textColor="@color/textColorBlack" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/micro2_view_margin"
+                    android:gravity="center"
+                    app:cardBackgroundColor="@color/bg_card_color"
+                    app:cardCornerRadius="@dimen/cardview_radius_std_2"
+                    app:cardElevation="@dimen/cardview_no_elevation">
+
+                    <Spinner
+                        android:id="@+id/adapter_spinner_modal_color"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="@dimen/milli2_content_padding"
+                        android:prompt="@string/select_modal_color"
+                        android:spinnerMode="dropdown" />
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/select_quantity"
+                    android:textColor="@color/textColorBlack" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/adapter_imageview_minus"
+                        android:layout_width="@dimen/milli2_img_width"
+                        android:layout_height="@dimen/milli2_img_height"
+                        android:src="@drawable/btn_minus" />
+
+                    <TextView
+                        android:id="@+id/adapter_textview_qty"
+                        android:layout_width="@dimen/milli_min_width"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/initial_val"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="@dimen/std2_text_size" />
+
+                    <ImageView
+                        android:id="@+id/adapter_imageview_plus"
+                        android:layout_width="@dimen/milli2_img_width"
+                        android:layout_height="@dimen/milli2_img_height"
+                        android:src="@drawable/btn_add" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:fontFamily="@font/open_sans_semibold"
+                android:text="@string/advance_paid"
+                android:textColor="@color/textColorBlack"
+                android:textSize="@dimen/mini_text_size" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5">
+
+                <EditText
+                    android:id="@+id/adapter_edittext_advance_paid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="@string/allowed_dig_mobile"
+                    android:gravity="center"
+                    android:hint="@string/advance_paid"
+                    android:inputType="phone"
+                    android:maxLength="@integer/max_length_ids"
+                    android:singleLine="true"
+                    android:textSize="@dimen/std_text_size" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

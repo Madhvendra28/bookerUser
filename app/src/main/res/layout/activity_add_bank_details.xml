@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/baseLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddBankDetailsActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/big_view_margin"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/big_content_padding"
+                android:paddingRight="@dimen/big_content_padding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/milli_img_width"
+                        android:layout_height="@dimen/milli_img_height"
+                        android:src="@drawable/ic_bank"
+                        app:tint="@color/bg_color_black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/milli_view_margin"
+                        android:text="Bank"
+                        android:textColor="@android:color/background_dark" />
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/bg_card_color"
+                    app:cardCornerRadius="@dimen/cardview_radius_std_2"
+                    app:cardElevation="@dimen/cardview_no_elevation">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/milli_view_margin">
+
+                        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                            android:id="@+id/spinnerBank"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/big_view_margin"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/big_content_padding"
+                android:paddingRight="@dimen/big_content_padding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/milli_img_width"
+                        android:layout_height="@dimen/milli_img_height"
+                        android:src="@drawable/ic_wallet"
+                        app:tint="@color/bg_color_black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/milli_view_margin"
+                        android:text="Account of"
+                        android:textColor="@android:color/background_dark" />
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/bg_card_color"
+                    app:cardCornerRadius="@dimen/cardview_radius_std_2"
+                    app:cardElevation="@dimen/cardview_no_elevation">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/milli_view_margin">
+
+                        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                            android:id="@+id/spinnerAccountOf"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/mini_content_padding">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textAccountHolderName"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/mini_view_margin"
+                    android:layout_weight="1"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:cardElevation="@dimen/cardview_no_elevation">
+
+                    <EditText
+                        android:id="@+id/edtAccountHolderName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:digits="@string/allowed_dig_name_number"
+                        android:hint="Account Holder Name"
+                        android:maxLength="@integer/max_length_name"
+                        android:padding="@dimen/mini_content_padding"
+                        android:singleLine="true"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="@dimen/std_text_size" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textAccountNo"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/mini_view_margin"
+                    android:layout_weight="1"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:cardElevation="@dimen/cardview_no_elevation">
+
+                    <EditText
+                        android:id="@+id/edtAccountNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:digits="@string/allowed_dig_mobile"
+                        android:drawableEnd="@drawable/ic_copy"
+                        android:hint="Account Number"
+                        android:maxLength="@integer/max_length_name"
+                        android:padding="@dimen/mini_content_padding"
+                        android:singleLine="true"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="@dimen/std_text_size" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textIFSCCode"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/mini_view_margin"
+                    android:layout_weight="1"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:cardElevation="@dimen/cardview_no_elevation">
+
+                    <EditText
+                        android:id="@+id/edtIFSCCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:digits="@string/allowed_dig_name_number"
+                        android:drawableEnd="@drawable/ic_copy"
+                        android:hint="IFSC Code"
+                        android:maxLength="@integer/max_length_name"
+                        android:padding="@dimen/mini_content_padding"
+                        android:singleLine="true"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="@dimen/std_text_size" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:gravity="end"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvFindIFSC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Find IFSC Code" />
+
+                    <TextView
+                        android:id="@+id/tvCheckIFSC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/mini_view_margin"
+                        android:text="Check IFSC Code" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/big_view_margin"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/mini_content_padding"
+                    android:paddingRight="@dimen/mini_content_padding">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/milli_img_width"
+                            android:layout_height="@dimen/milli_img_height"
+                            android:src="@drawable/ic_bank"
+                            app:tint="@color/bg_color_black" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/milli_view_margin"
+                            android:text="Account Type"
+                            android:textColor="@android:color/background_dark" />
+                    </LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@color/bg_card_color"
+                        app:cardCornerRadius="@dimen/cardview_radius_std_2"
+                        app:cardElevation="@dimen/cardview_no_elevation">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/milli_view_margin">
+
+                            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                                android:id="@+id/spinnerAccountType"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textDepositLimit"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/mini_view_margin"
+                    android:layout_weight="1"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:cardElevation="@dimen/cardview_no_elevation">
+
+                    <EditText
+                        android:id="@+id/edtDepositLimit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:digits="@string/allowed_dig_mobile"
+                        android:hint="\u20B9 Deposit Limit"
+                        android:maxLength="@integer/max_length_name"
+                        android:padding="@dimen/mini_content_padding"
+                        android:singleLine="true"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="@dimen/std_text_size" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/mini_content_padding"
+                    android:paddingRight="@dimen/mini_content_padding">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@color/bg_card_color"
+                        app:cardCornerRadius="@dimen/cardview_radius_std_2"
+                        app:cardElevation="@dimen/cardview_no_elevation">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Deposit Above \u20B949950?"
+                                android:textColor="@color/textColorBlack" />
+
+                            <RadioGroup
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="@dimen/milli_content_padding">
+
+                                <RadioButton
+                                    android:id="@+id/rbtnDepositAboveNo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:checked="true"
+                                    android:text="No"
+                                    android:textSize="@dimen/std_text_size" />
+
+                                <RadioButton
+                                    android:id="@+id/rbtnDepositAboveYes"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Yes"
+                                    android:textSize="@dimen/std_text_size" />
+                            </RadioGroup>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/big_view_margin"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/mini_content_padding"
+                    android:paddingRight="@dimen/mini_content_padding">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/milli_img_width"
+                            android:layout_height="@dimen/milli_img_height"
+                            android:src="@drawable/address_s" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/milli_view_margin"
+                            android:text="Note"
+                            android:textColor="@android:color/background_dark" />
+                    </LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@color/bg_card_color"
+                        app:cardCornerRadius="@dimen/cardview_radius_std_2"
+                        app:cardElevation="@dimen/cardview_no_elevation">
+
+                        <EditText
+                            android:id="@+id/edtNote"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:digits="@string/allowed_dig_address"
+                            android:fontFamily="@font/open_sans_semibold"
+                            android:hint="@string/add_note_here"
+                            android:maxLength="@integer/max_length_address"
+                            android:maxLines="4"
+                            android:minLines="4"
+                            android:padding="@dimen/mini_content_padding"
+                            android:textColor="@android:color/background_dark"
+                            android:textSize="@dimen/std_text_size" />
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutAccountForOtherDeposit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/big_view_margin"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/mini_content_padding"
+                    android:paddingRight="@dimen/mini_content_padding">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@color/bg_card_color"
+                        app:cardCornerRadius="@dimen/cardview_radius_std_2"
+                        app:cardElevation="@dimen/cardview_no_elevation">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Account available for other deposit?"
+                                android:textColor="@color/textColorBlack" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <RadioGroup
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="30dp"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnOtherDepositNo"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:checked="true"
+                                        android:text="No"
+                                        android:textSize="@dimen/std_text_size" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbtnOtherDepositYes"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Yes"
+                                        android:textSize="@dimen/std_text_size" />
+
+
+                                </RadioGroup>
+
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:src="@drawable/infotool" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnAddWallet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/mini_content_padding"
+                    android:layout_marginTop="@dimen/biggest_view_margin"
+                    android:layout_marginEnd="@dimen/mini_content_padding"
+                    android:background="@drawable/round_login_button"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:onClick="addBank"
+                    android:padding="@dimen/std_content_padding"
+                    android:text="Add Wallet"
+                    android:textAllCaps="false"
+                    android:textColor="@color/bg_color_white"
+                    android:textSize="@dimen/std_text_size"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>

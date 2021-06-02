@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/mini_content_padding"
+    android:paddingVertical="@dimen/milli2_content_padding">
+
+    <TextView
+        android:id="@+id/requirement_add_textview_site_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/na"
+        android:textColor="@android:color/background_dark"
+        android:textSize="@dimen/std_text_size"
+        android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="32dp"
+            android:src="@drawable/amazon_icon"
+            android:layout_marginStart="5dp"
+            android:id="@+id/requirement_add_imageview_site_image"
+            android:layout_height="32dp"/>
+
+
+</LinearLayout>

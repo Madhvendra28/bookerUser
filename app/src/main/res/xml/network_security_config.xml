@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <debug-overrides>
+        <trust-anchors>
+            <certificates
+                overridePins="true"
+                src="user" />
+        </trust-anchors>
+    </debug-overrides>
+
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">bookkr7r.com</domain>
+        <trust-anchors>
+            <certificates
+                overridePins="true"
+                src="user" />
+        </trust-anchors>
+    </domain-config>
+</network-security-config>

@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".EventDetailsActivity"
+    tools:showIn="@layout/activity_event_details">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/mini_view_margin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvEventIDData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Event#"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvEventName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:src="@drawable/warning" />
+
+                <ImageView
+                    android:id="@+id/imgShare"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/share" />
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/milli_view_margin"
+                android:elevation="@dimen/cardview_elevation"
+                app:cardCornerRadius="@dimen/cardview_radius_big">
+
+                <com.ortiz.touchview.TouchImageView
+                    android:id="@+id/eventImage1"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/logo"
+                    android:visibility="gone" />
+
+                <com.smarteist.autoimageslider.SliderView
+                    android:id="@+id/eventImageSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/big_img_height"
+                    app:sliderAnimationDuration="600"
+                    app:sliderAutoCycleDirection="back_and_forth"
+                    app:sliderAutoCycleEnabled="true"
+                    app:sliderIndicatorAnimationDuration="600"
+                    app:sliderIndicatorGravity="center_horizontal|bottom"
+                    app:sliderIndicatorMargin="15dp"
+                    app:sliderIndicatorOrientation="horizontal"
+                    app:sliderIndicatorPadding="3dp"
+                    app:sliderIndicatorRadius="2dp"
+                    app:sliderIndicatorSelectedColor="@color/bg_color_accent"
+                    app:sliderIndicatorUnselectedColor="@color/bg_color_white"
+                    app:sliderScrollTimeInSec="2"
+                    app:sliderStartAutoCycle="true" />
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/big_view_margin"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sale Type"
+                        android:textColor="@color/textColorBlack"
+                        android:textSize="@dimen/std_text_size"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/event_details_textview_sale_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sale Type"
+                        android:textColor="@color/textColorBlack"
+                        android:textSize="@dimen/std_text_size" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Site"
+                        android:textColor="@color/textColorBlack"
+                        android:textSize="@dimen/std_text_size"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerSites"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/std_view_margin"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/milli_view_margin"
+                            android:text="@string/start_date"
+                            android:textColor="@android:color/background_dark"
+                            android:textSize="@dimen/std_text_size"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/milli_img_width"
+                                android:layout_height="@dimen/milli_img_height"
+                                android:src="@drawable/ic_date_range" />
+
+                            <TextView
+                                android:id="@+id/event_details_textview_sale_start"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/open_sans_semibold"
+                                android:textColor="@color/textColorBlack"
+                                android:textSize="@dimen/std_text_size" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/milli_img_width"
+                                android:layout_height="@dimen/milli_img_height"
+                                android:src="@drawable/ic_access_time" />
+
+                            <TextView
+                                android:id="@+id/event_details_textview_sale_start_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/open_sans_semibold"
+                                android:textColor="@color/textColorBlack"
+                                android:textSize="@dimen/std_text_size" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/end_date"
+                            android:textColor="@android:color/background_dark"
+                            android:textSize="@dimen/std_text_size"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/milli_img_width"
+                                android:layout_height="@dimen/milli_img_height"
+                                android:src="@drawable/ic_date_range" />
+
+                            <TextView
+                                android:id="@+id/event_details_textview_sale_end"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/open_sans_semibold"
+                                android:gravity="center"
+                                android:textColor="@color/textColorBlack"
+                                android:textSize="@dimen/std_text_size" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/milli_img_width"
+                                android:layout_height="@dimen/milli_img_height"
+                                android:src="@drawable/ic_access_time" />
+
+                            <TextView
+                                android:id="@+id/event_details_textview_sale_end_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/open_sans_semibold"
+                                android:gravity="center"
+                                android:textColor="@color/textColorBlack"
+                                android:textSize="@dimen/std_text_size" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/std_view_margin"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/modelVarientList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llBookerCharge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/std_view_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvBookerCharge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bookkr Charge : "
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/event_details_textview_bookkr_charge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size" />
+
+                <!-- <androidx.cardview.widget.CardView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="1"
+                     app:cardBackgroundColor="@color/bg_card_color_2"
+                     app:cardCornerRadius="@dimen/cardview_radius_std_2"
+                     app:cardElevation="@dimen/cardview_no_elevation">
+
+                     <TextView
+                         android:id="@+id/event_details_textview_bookkr_charge"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:background="@android:color/transparent"
+                         android:fontFamily="@font/open_sans_semibold"
+                         android:textColor="@color/textColorBlack"
+                         android:textSize="@dimen/std_text_size"
+                         android:textStyle="bold" />
+                 </androidx.cardview.widget.CardView>-->
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llOfferTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/std_view_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvOfferTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Offer Tittle : "
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/event_details_textview_offer_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llOfferDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/std_view_margin"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvOfferDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Offer Details : "
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/event_details_textview_offer_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llEventNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/std_view_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Note : "
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvEventNote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:linksClickable="true"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llEventLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/std_view_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvEventLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Event Link : "
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/event_details_textview_event_link"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:linksClickable="true"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size" />
+
+                <ImageView
+                    android:id="@+id/imgCopy"
+                    android:layout_width="@dimen/milli2_img_width"
+                    android:layout_height="@dimen/milli2_img_height"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_copy" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llCreatedDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/std_view_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Posted Date : "
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvCreatedDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:linksClickable="true"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llUpdatedDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/std_view_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Last Edited : "
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvUpdatedDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:linksClickable="true"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnShowRequirement"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_login_button"
+                    android:text="View Requirements"
+                    android:onClick="btnViewRequirement"
+                    android:textAllCaps="false"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/bg_color_white"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnReport"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_login_button"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:text="Post \nRequirement"
+                    android:textAllCaps="false"
+                    android:visibility="gone"
+                    android:textColor="@color/bg_color_white"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

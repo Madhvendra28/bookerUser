@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".UserSignUpOTPVerificationActivity"
+    tools:showIn="@layout/activity_user_sign_up_otpverification">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/bigger_view_margin"
+                android:orientation="vertical"
+                android:padding="@dimen/bigger_view_margin">
+
+                <ImageView
+                    android:layout_width="@dimen/std2b_img_height"
+                    android:layout_height="@dimen/std2b_img_height"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/logo" />
+
+                <TextView
+                    android:id="@+id/otp_textview_hint"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/otp_instruction"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size" />
+
+                <TextView
+                    android:id="@+id/otp_textview_mobile_no"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/std_view_margin"
+                    android:gravity="center"
+                    android:text="@string/profile_mobile"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std_text_size" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/bigger_view_margin"
+                android:background="@drawable/round_edittext">
+
+                <EditText
+                    android:id="@+id/otp_edittext_otp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/otp_imageview_copy_image"
+                    android:background="@null"
+                    android:digits="@string/allowed_dig_password"
+                    android:drawableTint="@color/bg_color_black"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:hint="@string/prompt_otp"
+                    android:inputType="number"
+                    android:maxLength="@integer/max_length_mobile"
+                    android:paddingStart="@dimen/std_content_padding"
+                    android:paddingTop="@dimen/std_content_padding"
+                    android:paddingEnd="@dimen/std_content_padding"
+                    android:paddingBottom="@dimen/std_content_padding"
+                    android:singleLine="true"
+                    android:textSize="@dimen/std_text_size" />
+
+                <ImageView
+                    android:id="@+id/otp_imageview_copy_image"
+                    android:layout_width="@dimen/milli2_img_width"
+                    android:layout_height="@dimen/milli2_img_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/mini_view_margin"
+                    android:padding="@dimen/milli2_content_padding"
+                    android:src="@drawable/ic_copy" />
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/otp_button_check"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/bigger_view_margin"
+                android:layout_marginTop="@dimen/bigger_view_margin"
+                android:layout_marginEnd="@dimen/bigger_view_margin"
+                android:background="@drawable/round_login_button"
+                android:fontFamily="@font/open_sans_semibold"
+                android:onClick="checkOTP"
+                android:padding="@dimen/std_content_padding"
+                android:text="@string/button_register_user"
+                android:textAllCaps="false"
+                android:textSize="@dimen/std_text_size" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/std_view_margin"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:text="@string/not_received_code"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/std_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_resend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/milli_view_margin"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:onClick="resendOTP"
+                    android:text="@string/button_resend_otp"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textSize="@dimen/std_text_size" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

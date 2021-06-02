@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/notation_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mini2_min_height"
+        android:layout_gravity="bottom"
+        android:background="@drawable/white_up_gradient" />
+
+    <RelativeLayout
+        android:id="@+id/bottom_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mini_min_height"
+        android:layout_gravity="bottom"
+        android:background="@color/textColorWhite"
+        android:paddingHorizontal="@dimen/mini_content_padding"
+        app:elevation="@dimen/cardview_elevation">
+
+        <RelativeLayout
+            android:id="@+id/bottom_tab_RL_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/bottom_tab_imageview_home"
+                android:layout_width="@dimen/milli_img_width"
+                android:layout_height="@dimen/milli_img_height"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/home_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bottom_tab_imageview_home"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/open_sans_semibold"
+                android:text="@string/home"
+                android:textColor="@color/textColorBlack"
+                android:textSize="@dimen/mini_text_size"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/bottom_tab_RL_requirement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/bigger_view_margin"
+            android:layout_toEndOf="@+id/bottom_tab_RL_home">
+
+            <ImageView
+                android:id="@+id/bottom_tab_imageview_requirement"
+                android:layout_width="@dimen/milli_img_width"
+                android:layout_height="@dimen/milli_img_height"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/box_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bottom_tab_imageview_requirement"
+                android:fontFamily="@font/open_sans_semibold"
+                android:text="@string/requirement"
+                android:textColor="@color/textColorBlack"
+                android:textSize="@dimen/mini_text_size"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/bottom_tab_RL_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/bigger_view_margin"
+            android:layout_toStartOf="@+id/bottom_tab_RL_payment">
+
+            <ImageView
+                android:id="@+id/bottom_tab_imageview_message"
+                android:layout_width="@dimen/milli_img_width"
+                android:layout_height="@dimen/milli_img_height"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/message_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bottom_tab_imageview_message"
+                android:fontFamily="@font/open_sans_semibold"
+                android:text="@string/chat"
+                android:textColor="@color/textColorBlack"
+                android:textSize="@dimen/mini_text_size"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/bottom_tab_RL_payment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/bottom_tab_imageview_payment"
+                android:layout_width="@dimen/milli_img_width"
+                android:layout_height="@dimen/milli_img_height"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/payment_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bottom_tab_imageview_payment"
+                android:fontFamily="@font/open_sans_semibold"
+                android:text="@string/payment"
+                android:textColor="@color/textColorBlack"
+                android:textSize="@dimen/mini_text_size"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:gravity="center">
+
+        <RelativeLayout
+            android:id="@+id/bottom_tab_RL_order"
+            android:layout_width="@dimen/mini1_min_width"
+            android:layout_height="@dimen/mini1_min_height"
+            android:layout_marginBottom="@dimen/big_view_margin"
+            android:background="@drawable/circle_bg"
+            android:backgroundTint="@color/textColorRed">
+
+            <ImageView
+                android:layout_width="@dimen/milli_img_width"
+                android:layout_height="@dimen/milli_img_height"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/mini_view_margin"
+                android:src="@drawable/ic_action_cart"
+                app:fabSize="normal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/mini_view_margin"
+                android:padding="@dimen/milli_content_padding"
+                android:text="@string/orders"
+                android:textColor="@color/textColorWhite"
+                android:textSize="@dimen/mini_text_size" />
+        </RelativeLayout>
+    </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

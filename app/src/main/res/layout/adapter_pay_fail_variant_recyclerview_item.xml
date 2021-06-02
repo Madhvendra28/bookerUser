@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingVertical="@dimen/mini_content_padding">
+
+    <TextView
+        android:id="@+id/adapter_textview_variant_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/open_sans_semibold"
+        android:gravity="center"
+        android:textColor="@color/textColorBlack"
+        android:textSize="@dimen/std_text_size" />
+
+    <EditText
+        android:id="@+id/adapter_edittext_fail_quantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:digits="@string/allowed_dig_mobile"
+        android:hint="@string/quantity"
+        android:gravity="center"
+        android:inputType="phone"
+        android:maxLength="@integer/max_length_ids"
+        android:singleLine="true"
+        android:textSize="@dimen/std_text_size" />
+
+    <TextView
+        android:id="@+id/adapter_textview_variant_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/open_sans_semibold"
+        android:gravity="center"
+        android:textColor="@color/textColorBlack"
+        android:textSize="@dimen/std_text_size" />
+</LinearLayout>

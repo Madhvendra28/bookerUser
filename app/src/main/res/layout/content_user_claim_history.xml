@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".RequirementListActivity"
+    tools:showIn="@layout/activity_claim_user_history_detial">
+
+    <LinearLayout
+        android:id="@+id/requirement_list_LL_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/std_view_margin"
+                    android:elevation="@dimen/cardview_elevation"
+                    android:orientation="vertical"
+                    android:padding="@dimen/mini_content_padding"
+                    app:cardBackgroundColor="@color/bg_card_color_light_grey"
+                    app:cardCornerRadius="@dimen/cardview_radius_std_3">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <!--<TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="@dimen/mini_view_margin"
+                            android:fontFamily="@font/open_sans_semibold"
+                            android:paddingHorizontal="@dimen/std_content_padding"
+                            android:text="@string/filter"
+                            android:textColor="@color/textColorBlack"
+                            android:textSize="@dimen/std_text_size"
+                            android:textStyle="bold" />-->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:divider="?android:dividerHorizontal"
+                            android:orientation="horizontal"
+                            android:showDividers="middle">
+
+                            <LinearLayout
+                                android:id="@+id/active_claims"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorPrimary"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:padding="@dimen/mini_content_padding">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="@string/active_claims"
+                                    android:textAllCaps="true"
+                                    android:textColor="@color/textColorWhite"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/claim_history"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:padding="@dimen/mini_content_padding">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="@string/claim_history"
+                                    android:textAllCaps="true"
+                                    android:textColor="@color/textColorBlack" android:textStyle="bold" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/requirement_list_recyclerview_items"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+    <include layout="@layout/no_data_page" />
+</RelativeLayout>
