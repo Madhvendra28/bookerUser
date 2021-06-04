@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="4"
+    android:layout_height="80dp">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_weight="1"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/varient_name"
+        android:textAlignment="center"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:text="Varient Name"/>
+</RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="match_parent">
+        <EditText
+            android:layout_width="match_parent"
+            android:id="@+id/cod"
+            android:textAlignment="center"
+            android:layout_centerInParent="true"
+            android:inputType="number"
+            android:maxLength="4"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:background="#00FFFFFF"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="match_parent">
+        <EditText
+            android:layout_width="match_parent"
+            android:id="@+id/prepaid"
+            android:layout_centerInParent="true"
+            android:textAlignment="center"
+            android:inputType="number"
+            android:maxLength="4"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:hint="0"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="match_parent">
+        <EditText
+            android:layout_width="match_parent"
+            android:id="@+id/payfail"
+            android:textAlignment="center"
+            android:inputType="number"
+            android:maxLength="4"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:background="#00FFFFFF"/>
+    </RelativeLayout>
+
+
+</LinearLayout>

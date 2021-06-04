@@ -49,6 +49,7 @@ public class ClaimUserDetailActivity extends AppCompatActivity {
     private TextView nodata_textview;
     Activity activity;
 
+    String total;
     MaterialButton btnConfirmQuantity, btnFailedAndUpdate;
 
 
@@ -100,6 +101,7 @@ public class ClaimUserDetailActivity extends AppCompatActivity {
                 Intent confirm = new Intent(ClaimUserDetailActivity.this,MdConfirmClaimActivity.class);
                 confirm.putExtra("claim_requirement_id", claimedId);
                 confirm.putExtra("requirement_id", reqId);
+                confirm.putExtra("total", total);
                 startActivity(confirm);
             }
         });
@@ -160,7 +162,8 @@ public class ClaimUserDetailActivity extends AppCompatActivity {
                                                 tvConfirmedQuantity.setText(!jsonArray.isNull("confirmed_quantity") ? jsonArray.getString("confirmed_quantity") : "");
                                                 tvFailedToBook.setText(!jsonArray.isNull("failed_to_book") ? jsonArray.getString("failed_to_book") : "");
                                                 tvReasons.setText(!jsonArray.isNull("fail_quantity_reason") ? jsonArray.getString("fail_quantity_reason") : "");
-                                                tvQuantityLeftToUpdate.setText(!jsonArray.isNull("remaining_quantity") ? jsonArray.getString("remaining_quantity") : "");
+                                                 total = !jsonArray.isNull("remaining_quantity") ? jsonArray.getString("remaining_quantity") : "";
+                                                tvQuantityLeftToUpdate.setText(total);
 
                                             }
                                         } catch (Exception e) {

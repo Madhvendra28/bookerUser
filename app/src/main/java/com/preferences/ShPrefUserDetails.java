@@ -185,4 +185,17 @@ public class ShPrefUserDetails {
         String s = sharedPreferences.getString(profile_image, "");
         return s;
     }
+
+
+    public static String getStringData(String key ,Context activity) {
+        SharedPreferences sharedPreferences = activity.getSharedPreferences(userDetails, Context.MODE_PRIVATE);
+        String s = sharedPreferences.getString(key, null);
+        return s;
+    }
+    public static void setStringData(Context context,String key, String data) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(userDetails, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key, data);
+        editor.commit();
+    }
 }

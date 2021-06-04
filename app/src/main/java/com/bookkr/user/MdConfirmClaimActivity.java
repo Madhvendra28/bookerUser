@@ -3,9 +3,15 @@ package com.bookkr.user;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -19,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adapter.ScreenSlidePagerAdapter;
 import com.adapter.UserClaimConfirmSiteDataRecyclerAdapter;
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -56,21 +63,36 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class MdConfirmClaimActivity extends AppCompatActivity implements Response.Listener<String>, Response.ErrorListener {
+public class MdConfirmClaimActivity extends FragmentActivity implements Response.Listener<String>, Response.ErrorListener {
 
     private CoordinatorLayout coordinatorLayout;
-    private TextView claim_details_textview_claim_quantity, claim_details_textview_confirm_claim, claim_details_textview_left_quantity,mi_store,flipkart;
+    private TextView claim_details_textview_claim_quantity, claim_details_textview_confirm_claim, claim_details_textview_left_quantity;
     private RecyclerView claim_confirm_mirecycleview_sites, claim_confirm_flipkartrecycleview_sites;
-    private LinearLayout mi_act,flip_act;
+    private LinearLayout mi_store,flipkart;
 
     private ProgressDialog progress;
     private final String TAG = "UserClaimDetails";
     private int requestFor = -1;
     private boolean claimConfirmUpdated = false;
-    String claimedId,reqId;
+    String claimedId,reqId,totalquantity;
     private static MdConfirmClaimActivity activity;
     private UserClaim userClaim;
     private SiteData selectedSiteData;
+
+    private static final int NUM_PAGES = 5;
+
+    /**
+     * The pager widget, which handles animation and allows swiping horizontally to access previous
+     * and next wizard steps.
+     */
+    private ViewPager mPager;
+
+    /**
+     * The pager adapter, which provides the pages to the view pager widget.
+     */
+    private PagerAdapter pagerAdapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,36 +109,33 @@ public class MdConfirmClaimActivity extends AppCompatActivity implements Respons
             claim_confirm_flipkartrecycleview_sites = findViewById(R.id.claim_confirm_flipkartrecycleview_sites);
             mi_store = findViewById(R.id.mi_store);
             flipkart = findViewById(R.id.flipkart);
-            mi_act = findViewById(R.id.mi_act);
-            flip_act = findViewById(R.id.flip_act);
 
-            mi_act.setVisibility(View.VISIBLE);
-            flip_act.setVisibility(View.GONE);
+            mPager = (ViewPager) findViewById(R.id.pager);
+
             claimedId = getIntent().getExtras().getString("claim_requirement_id");
             reqId = getIntent().getExtras().getString("requirement_id");
+            totalquantity = getIntent().getExtras().getString("total");
             Log.d("serajdata","ucca req id "+reqId+ " cid "+claimedId);
+
+
+            ShPrefUserDetails.setStringData(this,"totalquantity",totalquantity);
 
             mi_store.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("serajdata","userclaim activity open");
-                    mi_act.setVisibility(View.VISIBLE);
-                    flip_act.setVisibility(View.GONE);
-                    mi_store.setTextColor(getResources().getColor(R.color.colorPrimary));
-                    flipkart.setTextColor(getResources().getColor(R.color.textColorBlack));
-                    Toast.makeText(MdConfirmClaimActivity.this, "Mi clicked", Toast.LENGTH_SHORT).show();
+                    mPager.setCurrentItem(0,true);
+                   
+                    Toast.makeText(MdConfirmClaimActivity.this, "Mi Store", Toast.LENGTH_SHORT).show();
                 }
             });
 
             flipkart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("serajdata","userclaim activity open");
-                    mi_act.setVisibility(View.GONE);
-                    flip_act.setVisibility(View.VISIBLE);
-                    mi_store.setTextColor(getResources().getColor(R.color.textColorBlack));
-                    flipkart.setTextColor(getResources().getColor(R.color.colorPrimary));
-                    Toast.makeText(MdConfirmClaimActivity.this, "flip clicked", Toast.LENGTH_SHORT).show();
+                    Log.d("serajdata","flipkart clicked");
+                    mPager.setCurrentItem(1,true);
+
+                    Toast.makeText(MdConfirmClaimActivity.this, "Flipkart Store", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -148,8 +167,8 @@ public class MdConfirmClaimActivity extends AppCompatActivity implements Respons
                        ConfirmClaimDataResponse confirmClaimDataResponse=response.body();
                        Log.d("serajsimpleapi","parsing data");
                        if (confirmClaimDataResponse.getStatus()==200){
-                           Log.d("serajsimpleapi","Status 200");
-                           Log.d("serajsimpleapi",confirmClaimDataResponse.getMessage());
+                           pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(),confirmClaimDataResponse.getData());
+                           mPager.setAdapter(pagerAdapter);
                        }
                    }
 
@@ -614,4 +633,7 @@ public class MdConfirmClaimActivity extends AppCompatActivity implements Respons
         }
         Snackbar.make(coordinatorLayout, getString(R.string.error_try_later), Snackbar.LENGTH_SHORT).show();
     }
+
+
+
 }
