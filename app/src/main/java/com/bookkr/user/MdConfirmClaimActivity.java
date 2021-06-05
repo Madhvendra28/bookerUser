@@ -124,7 +124,8 @@ public class MdConfirmClaimActivity extends FragmentActivity implements Response
                 @Override
                 public void onClick(View v) {
                     mPager.setCurrentItem(0,true);
-                   
+                    mi_store.setBackgroundResource(R.color.textColorPrimary);
+                    flipkart.setBackgroundResource(R.color.textColorWhite);
                     Toast.makeText(MdConfirmClaimActivity.this, "Mi Store", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -134,7 +135,8 @@ public class MdConfirmClaimActivity extends FragmentActivity implements Response
                 public void onClick(View v) {
                     Log.d("serajdata","flipkart clicked");
                     mPager.setCurrentItem(1,true);
-
+                    flipkart.setBackgroundResource(R.color.textColorPrimary);
+                    mi_store.setBackgroundResource(R.color.textColorWhite);
                     Toast.makeText(MdConfirmClaimActivity.this, "Flipkart Store", Toast.LENGTH_SHORT).show();
                 }
             });
