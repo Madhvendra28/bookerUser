@@ -43,6 +43,8 @@ import com.model.RequestParameter;
 import com.model.SiteData;
 import com.model.UserClaim;
 import com.model.confirmclaim.ConfirmClaimDataResponse;
+import com.model.confirmclaim.MdSiteData;
+import com.model.confirmclaim.Variant;
 import com.preferences.ShPrefUserDetails;
 import com.retrofit.APIClient;
 import com.utils.AppURL;
@@ -58,6 +60,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -119,6 +122,8 @@ public class MdConfirmClaimActivity extends FragmentActivity implements Response
 
 
             ShPrefUserDetails.setStringData(this,"totalquantity",totalquantity);
+            ShPrefUserDetails.setStringData(this,"requirementid",reqId);
+            ShPrefUserDetails.setStringData(this,"confirmclaimid",claimedId);
 
             mi_store.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -348,6 +353,7 @@ public class MdConfirmClaimActivity extends FragmentActivity implements Response
     }
 
     public void userConfirmClaim(View view) {
+
         try {
             Log.d("ConfirmClaim","Button Clicked");
             if (!ConnectionManager.isOnline(this)) {
@@ -635,6 +641,8 @@ public class MdConfirmClaimActivity extends FragmentActivity implements Response
         }
         Snackbar.make(coordinatorLayout, getString(R.string.error_try_later), Snackbar.LENGTH_SHORT).show();
     }
+
+
 
 
 

@@ -152,4 +152,8 @@ public class MdClaimConfirmAdapter extends RecyclerView.Adapter<MdClaimConfirmAd
             payFail=itemView.findViewById(R.id.payfail);
         }
     }
+
+    public List<Variant> getUpdatedData(){
+        return variantList;
+    }
 }

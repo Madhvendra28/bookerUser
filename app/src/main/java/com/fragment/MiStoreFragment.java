@@ -10,11 +10,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.adapter.MdClaimConfirmAdapter;
+import com.adapter.SendDataToServer;
+import com.bookkr.user.MdConfirmClaimActivity;
 import com.bookkr.user.R;
 import com.model.confirmclaim.Datum;
+import com.model.confirmclaim.MdSiteData;
 import com.model.confirmclaim.Variant;
 import com.preferences.ShPrefUserDetails;
 
@@ -29,6 +34,8 @@ public class MiStoreFragment extends Fragment {
     RecyclerView crv;
     MdClaimConfirmAdapter adapter;
     View view;
+    String requiremenr_id,claim_id,totalQuantity;
+    Button button;
 
     public MiStoreFragment(List<Datum> dataList) {
         this.dataList = dataList;
@@ -45,6 +52,7 @@ public class MiStoreFragment extends Fragment {
         quantity=view.findViewById(R.id.tv_quantity);
         modelName=view.findViewById(R.id.tv_modelname);
         Log.d("serajdatadebug","ccdfdfse");
+        button=view.findViewById(R.id.cnfmbtn);
         crv.setLayoutManager(new LinearLayoutManager(getContext()));
 
         for(int i=0;i<dataList.size();i++){
@@ -52,23 +60,52 @@ public class MiStoreFragment extends Fragment {
                 variantList=dataList.get(i).getModel().get(0).getVariant();
                 dealerName.setText(""+dataList.get(i).getDealerName());
                 modelName.setText(""+dataList.get(i).getModel().get(0).getModelName());
+
                 break;
             }
         }
 
-        String totalQuantity= ShPrefUserDetails.getStringData("totalquantity",getContext());
+        totalQuantity= ShPrefUserDetails.getStringData("totalquantity",getContext());
+        claim_id=ShPrefUserDetails.getStringData("confirmclaimid",getContext());
+        requiremenr_id=ShPrefUserDetails.getStringData("requirementid",getContext());
+
         quantity.setText("Quantity left : "+totalQuantity);
         //variantList=dataList.get(0).getModel().get(0).getVariant();
         if (variantList.size() > 0){
             setData();
         }
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendData();
+            }
+        });
 
         return view;
     }
+
+    private void sendData() {
+        Log.d("ConfirmClaim","inside send data");
+        List<Variant> variants= adapter.getUpdatedData();
+        MdSiteData mdSiteData=new MdSiteData(requiremenr_id,"Amazon",totalQuantity,claim_id,variants);
+        SendDataToServer sendDataToServer = new SendDataToServer(getContext(),mdSiteData,getActivity());
+
+        boolean status=sendDataToServer.sendCCData();
+        if(status){
+            Toast.makeText(getContext(), "Data successfully send to server", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getContext(), "Failed to send data", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
 
     private void setData() {
       adapter=new MdClaimConfirmAdapter(variantList,getContext());
       crv.setAdapter(adapter);
     }
+
+
+
 }
