@@ -647,7 +647,8 @@ public class HomeActivity extends AppCompatActivity {
                                 return false;
                             case R.id.drawer_claim_history:
                                 Log.d("serajdata","claim history clicked");
-                               startActivity(new Intent(HomeActivity.this, ClaimUserHistoryDetialActivity.class));
+//                               startActivity(new Intent(HomeActivity.this, ClaimUserHistoryDetialActivity.class));
+                                startActivity(new Intent(HomeActivity.this, UserClaimHistoryListActivity.class));
                                 return false;
 
                             case R.id.drawer_rate_chart:

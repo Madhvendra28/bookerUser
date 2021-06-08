@@ -17,11 +17,14 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,7 +72,7 @@ import retrofit2.Callback;
 public class MdConfirmClaimActivity extends FragmentActivity implements Response.Listener<String>, Response.ErrorListener {
 
     private CoordinatorLayout coordinatorLayout;
-    private TextView claim_details_textview_claim_quantity, claim_details_textview_confirm_claim, claim_details_textview_left_quantity;
+    private TextView flip,mi,claim_details_textview_claim_quantity, claim_details_textview_confirm_claim, claim_details_textview_left_quantity;
     private RecyclerView claim_confirm_mirecycleview_sites, claim_confirm_flipkartrecycleview_sites;
     private LinearLayout mi_store,flipkart;
 
@@ -80,6 +83,7 @@ public class MdConfirmClaimActivity extends FragmentActivity implements Response
     String claimedId,reqId,totalquantity;
     private static MdConfirmClaimActivity activity;
     private UserClaim userClaim;
+    private Button button;
     private SiteData selectedSiteData;
 
     private static final int NUM_PAGES = 5;
@@ -131,6 +135,8 @@ public class MdConfirmClaimActivity extends FragmentActivity implements Response
                     mPager.setCurrentItem(0,true);
                     mi_store.setBackgroundResource(R.color.textColorPrimary);
                     flipkart.setBackgroundResource(R.color.textColorWhite);
+//                    flip.setTextColor(Color.BLACK);
+//                    mi.setTextColor(Color.WHITE);
                     Toast.makeText(MdConfirmClaimActivity.this, "Mi Store", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -138,10 +144,11 @@ public class MdConfirmClaimActivity extends FragmentActivity implements Response
             flipkart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("serajdata","flipkart clicked");
+                    Log.d("ConfirmClaim","flipkart clicked");
                     mPager.setCurrentItem(1,true);
                     flipkart.setBackgroundResource(R.color.textColorPrimary);
                     mi_store.setBackgroundResource(R.color.textColorWhite);
+
                     Toast.makeText(MdConfirmClaimActivity.this, "Flipkart Store", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -641,8 +648,6 @@ public class MdConfirmClaimActivity extends FragmentActivity implements Response
         }
         Snackbar.make(coordinatorLayout, getString(R.string.error_try_later), Snackbar.LENGTH_SHORT).show();
     }
-
-
 
 
 

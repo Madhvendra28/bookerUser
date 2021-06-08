@@ -14,6 +14,7 @@
             android:layout_height="match_parent"
             android:fillViewport="true"
             android:padding="10dp"
+            android:layout_above="@+id/btnuvs"
             android:scrollbars="none">
 
             <LinearLayout
@@ -140,6 +141,22 @@
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnuvs"
+            android:paddingEnd="5dp"
+            android:layout_above="@+id/cnfmbtn"
+            >
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/update"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="2dp"
+                android:text="Update"/>
+
+        </RelativeLayout>
         <Button
             android:layout_width="200dp"
             android:layout_height="wrap_content"

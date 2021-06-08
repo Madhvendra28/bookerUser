@@ -134,6 +134,7 @@
                         android:id="@+id/claim_rv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+
                         tools:listitem="@layout/claim_varient_data"
                         android:layout_gravity="start"
                         android:scrollbars="none" />
@@ -147,7 +148,8 @@
             android:padding="10dp"
             android:background="@color/colorPrimary"
             android:layout_centerHorizontal="true"
-            android:text="Submit"/>
+            android:text="Submit"
+            android:onClick="submit"/>
     </RelativeLayout>
 
 </FrameLayout>

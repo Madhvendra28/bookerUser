@@ -61,12 +61,13 @@
                                 android:padding="@dimen/mini_content_padding">
 
                                 <TextView
+                                    android:id="@+id/mi"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:text="Mi Store"
                                     android:textAllCaps="true"
-                                    android:textColor="@color/textColorWhite"
+                                    android:textColor="@color/textColorBlack"
                                     android:textStyle="bold" />
                             </LinearLayout>
 
@@ -80,6 +81,7 @@
                                 android:padding="@dimen/mini_content_padding">
 
                                 <TextView
+                                    android:id="@+id/flip"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"

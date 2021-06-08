@@ -1,5 +1,6 @@
 package com.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -18,6 +19,7 @@ import com.adapter.MdClaimConfirmAdapter;
 import com.adapter.SendDataToServer;
 import com.bookkr.user.MdConfirmClaimActivity;
 import com.bookkr.user.R;
+import com.bookkr.user.UserClaimPayFailDetailsActivity;
 import com.model.confirmclaim.Datum;
 import com.model.confirmclaim.MdSiteData;
 import com.model.confirmclaim.Variant;
@@ -26,7 +28,7 @@ import com.preferences.ShPrefUserDetails;
 import java.util.List;
 
 
-public class MiStoreFragment extends Fragment {
+public class MiStoreFragment extends Fragment implements View.OnClickListener {
 
     List<Datum> dataList;
     List<Variant> variantList;
@@ -54,6 +56,16 @@ public class MiStoreFragment extends Fragment {
         Log.d("serajdatadebug","ccdfdfse");
         button=view.findViewById(R.id.cnfmbtn);
         crv.setLayoutManager(new LinearLayoutManager(getContext()));
+        view.findViewById(R.id.update).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
+                List<Variant> variants= adapter.getUpdatedData();
+                Intent intent = new Intent(getContext(), UserClaimPayFailDetailsActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         for(int i=0;i<dataList.size();i++){
             if(dataList.get(i).getSiteName().equalsIgnoreCase("Amazon")){
@@ -107,5 +119,20 @@ public class MiStoreFragment extends Fragment {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id)
+        {
+            case R.id.update:
+                Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
+                List<Variant> variants= adapter.getUpdatedData();
+                Intent intent = new Intent(getContext(), UserClaimPayFailDetailsActivity.class);
+                startActivity(intent);
 
+                break;
+            default:
+                Toast.makeText(getContext(), "Please provide id first", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

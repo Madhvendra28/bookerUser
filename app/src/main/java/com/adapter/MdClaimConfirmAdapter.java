@@ -128,8 +128,6 @@ public class MdClaimConfirmAdapter extends RecyclerView.Adapter<MdClaimConfirmAd
             });
 
 
-
-
         }catch (Exception e){
             Toast.makeText(context, ""+e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
         }
