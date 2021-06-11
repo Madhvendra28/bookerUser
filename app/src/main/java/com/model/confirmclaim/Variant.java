@@ -28,6 +28,16 @@ public class Variant {
     @Expose
     private Integer otpVerify;
 
+    private String payfailquantity;
+
+    public String getPayfailquantity() {
+        return payfailquantity;
+    }
+
+    public void setPayfailquantity(String payfailquantity) {
+        this.payfailquantity = payfailquantity;
+    }
+
     public Integer getRequirementVariantId() {
         return requirementVariantId;
     }

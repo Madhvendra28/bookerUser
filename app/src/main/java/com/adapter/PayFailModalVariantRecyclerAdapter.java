@@ -12,8 +12,10 @@ import android.widget.TextView;
 import com.bookkr.user.R;
 import com.bookkr.user.UserClaimPayFailDetailsActivity;
 import com.model.ModalVariant;
+import com.model.confirmclaim.Variant;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,9 +23,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class PayFailModalVariantRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Activity activity;
-    private ArrayList<ModalVariant> list;
+    private List<Variant> list;
 
-    public PayFailModalVariantRecyclerAdapter(Activity activity, ArrayList<ModalVariant> list) {
+    public PayFailModalVariantRecyclerAdapter(Activity activity, List<Variant> list) {
         this.activity = activity;
         this.list = list;
     }
@@ -64,10 +66,10 @@ public class PayFailModalVariantRecyclerAdapter extends RecyclerView.Adapter<Rec
 
         private void bindAddressListItems(PayFailModalVariantRecyclerAdapter adapter, final int position) {
             try {
-                final ModalVariant modalVariant = list.get(position);
-                adapter_textview_variant_name.setText(modalVariant.getVariant_name() + "");
-                adapter_textview_variant_price.setText(modalVariant.getVariant_price() + "");
-                adapter_edittext_fail_quantity.setText(modalVariant.getPayfail_quantity() + "");
+                final Variant modalVariant = list.get(position);
+                adapter_textview_variant_name.setText(modalVariant.getVariantName());
+                adapter_textview_variant_price.setText( "123");
+                adapter_edittext_fail_quantity.setText(modalVariant.getPayFail() + "");
 
                 adapter_edittext_fail_quantity.addTextChangedListener(new TextWatcher() {
 
@@ -80,7 +82,7 @@ public class PayFailModalVariantRecyclerAdapter extends RecyclerView.Adapter<Rec
 
                     public void afterTextChanged(Editable s) {
                         String string = s.toString();
-                        modalVariant.setPayfail_quantity(string);
+                        modalVariant.setPayfailquantity(string);
                         ((UserClaimPayFailDetailsActivity) activity).updateAmountToPaid();
                     }
                 });
