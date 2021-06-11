@@ -1,4 +1,4 @@
-package com.adapter;
+package com.network;
 
 import android.content.Context;
 import android.util.Log;
@@ -30,13 +30,14 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SendDataToServer {
+public class SendpayfailDatatoServer {
+
     Context context;
     MdSiteData mdSiteData;
     FragmentActivity activity;
     boolean respnce;
 
-    public SendDataToServer(Context context, MdSiteData mdSiteData, FragmentActivity activity) {
+    public SendpayfailDatatoServer(Context context, MdSiteData mdSiteData, FragmentActivity activity) {
         this.context = context;
         this.mdSiteData = mdSiteData;
         this.activity = activity;
@@ -61,30 +62,30 @@ public class SendDataToServer {
 
 
             List<Variant> siteVariantDataArrayList = mdSiteData.getModalVariantArrayList();
-                if (siteVariantDataArrayList != null && siteVariantDataArrayList.size() > 0) {
-                    JSONArray variantJSONArray = new JSONArray();
-                    for (int j = 0; j < siteVariantDataArrayList.size(); j++) {
-                        Variant modalVariant = siteVariantDataArrayList.get(j);
-                        JSONObject variantJSONObject = new JSONObject();
-                        variantJSONObject.put(AppURLParams.requirement_variant_id, modalVariant.getRequirementVariantId() + "");
-                        variantJSONObject.put(AppURLParams.claim_quantity_id, 0);
-                        variantJSONObject.put(AppURLParams.cod_quantity, modalVariant.getCod() + "");
-                        variantJSONObject.put(AppURLParams.prepaid_quantity, modalVariant.getPrePaid() + "");
-                        variantJSONObject.put(AppURLParams.payfail_quantity, modalVariant.getPayFail() + "");
-                        variantJSONObject.put(AppURLParams.otp_quantity, "");
-                        variantJSONArray.put(variantJSONObject);
-
-                    }
-                    siteJSONObject.put(AppURLParams.variant, variantJSONArray);
-
-                } else {
-                    Toast.makeText(context, "No data Found", Toast.LENGTH_SHORT).show();
+            if (siteVariantDataArrayList != null && siteVariantDataArrayList.size() > 0) {
+                JSONArray variantJSONArray = new JSONArray();
+                for (int j = 0; j < siteVariantDataArrayList.size(); j++) {
+                    Variant modalVariant = siteVariantDataArrayList.get(j);
+                    JSONObject variantJSONObject = new JSONObject();
+                    variantJSONObject.put(AppURLParams.requirement_variant_id, modalVariant.getRequirementVariantId() + "");
+                    variantJSONObject.put(AppURLParams.claim_quantity_id, 0);
+                    variantJSONObject.put(AppURLParams.cod_quantity, modalVariant.getCod() + "");
+                    variantJSONObject.put(AppURLParams.prepaid_quantity, modalVariant.getPrePaid() + "");
+                    variantJSONObject.put(AppURLParams.payfail_quantity, modalVariant.getPayFail() + "");
+                    variantJSONObject.put(AppURLParams.otp_quantity, "");
+                    variantJSONArray.put(variantJSONObject);
 
                 }
+                siteJSONObject.put(AppURLParams.variant, variantJSONArray);
+
+            } else {
+                Toast.makeText(context, "No data Found", Toast.LENGTH_SHORT).show();
+
+            }
 
 
 
-                siteJSONArray.put(siteJSONObject);
+            siteJSONArray.put(siteJSONObject);
 
             Log.d("ConfirmClaim", "siteData\n" + siteJSONArray);
 
@@ -98,7 +99,7 @@ public class SendDataToServer {
             Log.d("ConfirmClaim",parameter.toString());
             Log.d("ConfirmClaim","Api is  called");
             //sendDataListData(parameter);
-           return sendDataListData(parameter);
+            return sendDataListData(parameter);
         } catch (Exception e) {
             CoordinatorLayout coordinatorLayout=new CoordinatorLayout(context);
             Snackbar.make(coordinatorLayout,"Error while sending data to server ", Snackbar.LENGTH_SHORT).show();
@@ -165,6 +166,7 @@ public class SendDataToServer {
 
         return respnce;
     }
+
 
 
 }

@@ -25,6 +25,7 @@ import com.model.confirmclaim.MdSiteData;
 import com.model.confirmclaim.Variant;
 import com.preferences.ShPrefUserDetails;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -66,7 +67,7 @@ public class MiStoreFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-
+             variantList= new ArrayList<>();
         for(int i=0;i<dataList.size();i++){
             if(dataList.get(i).getSiteName().equalsIgnoreCase("Amazon")){
                 variantList=dataList.get(i).getModel().get(0).getVariant();
@@ -104,7 +105,7 @@ public class MiStoreFragment extends Fragment implements View.OnClickListener {
         SendDataToServer sendDataToServer = new SendDataToServer(getContext(),mdSiteData,getActivity());
 
         boolean status=sendDataToServer.sendCCData();
-        if(status){
+        if(!status){
             Toast.makeText(getContext(), "Data successfully send to server", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(getContext(), "Failed to send data", Toast.LENGTH_SHORT).show();
@@ -134,5 +135,11 @@ public class MiStoreFragment extends Fragment implements View.OnClickListener {
             default:
                 Toast.makeText(getContext(), "Please provide id first", Toast.LENGTH_SHORT).show();
         }
+    }
+
+
+    public List<Variant> payFailData(){
+        List<Variant> variants= adapter.getUpdatedData();
+        return variants;
     }
 }

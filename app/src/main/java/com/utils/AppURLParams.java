@@ -156,7 +156,7 @@ public class AppURLParams {
     public static final String site_name = "site_name";
     public static final String site_variant = "site_variant";
     public static final String site_quantity = "site_quantity";
-    public static final String siteData = "siteData";
+    public static final String siteData = "data_list";
     public static final String image = "image";
     public static final String address_id = "address_id";
     public static final String description = "description";
