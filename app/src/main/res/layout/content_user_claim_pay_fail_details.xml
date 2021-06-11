@@ -11,7 +11,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="243dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -313,15 +315,6 @@
                     android:textColor="@color/textColorBlack"
                     android:textSize="@dimen/mini_text_size" />
 
-                <TextView
-                    android:id="@+id/user_claim_textview_modal_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/barlow_condensed_semobold"
-                    android:gravity="left|center_vertical"
-                    android:textColor="@color/textColorBlack"
-                    android:textSize="@dimen/std2_text_size" />
             </LinearLayout>
 
             <LinearLayout
@@ -335,6 +328,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:scrollbars="none" />
+
+                <TextView
+                    android:id="@+id/user_claim_textview_modal_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/barlow_condensed_semobold"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std2_text_size" />
             </LinearLayout>
 
             <LinearLayout
@@ -362,6 +365,43 @@
                     android:gravity="left|center_vertical"
                     android:textColor="@color/textColorBlack"
                     android:textSize="@dimen/std2_text_size" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/user_claim_radiobutton_cod_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="@string/yes"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="@dimen/std_text_size"
+                        android:textStyle="bold" />
+
+                    <RadioButton
+                        android:id="@+id/user_claim_radiobutton_cod_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/no"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="@dimen/std_text_size"
+                        android:textStyle="bold" />
+
+                    <RadioButton
+                        android:id="@+id/user_claim_radiobutton_cod_idk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/idk"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="@dimen/std_text_size"
+                        android:textStyle="bold" />
+                </RadioGroup>
             </LinearLayout>
 
             <LinearLayout
@@ -420,42 +460,6 @@
                     android:textColor="@color/textColorBlack"
                     android:textSize="@dimen/std_text_size" />
 
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/user_claim_radiobutton_cod_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:checked="true"
-                        android:text="@string/yes"
-                        android:textColor="@android:color/background_dark"
-                        android:textSize="@dimen/std_text_size"
-                        android:textStyle="bold" />
-
-                    <RadioButton
-                        android:id="@+id/user_claim_radiobutton_cod_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/no"
-                        android:textColor="@android:color/background_dark"
-                        android:textSize="@dimen/std_text_size"
-                        android:textStyle="bold" />
-
-                    <RadioButton
-                        android:id="@+id/user_claim_radiobutton_cod_idk"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/idk"
-                        android:textColor="@android:color/background_dark"
-                        android:textSize="@dimen/std_text_size"
-                        android:textStyle="bold" />
-                </RadioGroup>
             </LinearLayout>
 
             <Button

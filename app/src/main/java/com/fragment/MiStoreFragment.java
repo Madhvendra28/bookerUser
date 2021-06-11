@@ -126,7 +126,7 @@ public class MiStoreFragment extends Fragment implements View.OnClickListener {
         SendDataToServer sendDataToServer = new SendDataToServer(getContext(),mdSiteData,getActivity());
 
         boolean status=sendDataToServer.sendCCData();
-        if(status){
+        if(!status){
             Toast.makeText(getContext(), "Data successfully send to server", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(getContext(), "Failed to send data", Toast.LENGTH_SHORT).show();
