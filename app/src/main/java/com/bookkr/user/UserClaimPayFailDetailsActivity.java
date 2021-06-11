@@ -5,10 +5,14 @@ import android.os.Bundle;
 
 import com.adapter.PayFailModalVariantRecyclerAdapter;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
 import com.model.ModalVariant;
 import com.model.PayFailData;
 import com.model.SiteData;
 import com.model.UserClaim;
+import com.model.confirmclaim.MdModel;
+import com.model.confirmclaim.Variant;
+import com.preferences.SessionManager;
 import com.preferences.ShPrefUserDetails;
 import com.utils.AppURLParams;
 import com.utils.AppUtils;
@@ -30,13 +34,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserClaimPayFailDetailsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener {
 
     private CoordinatorLayout coordinatorLayout;
     private TextView user_claim_textview_dealer_can_pay, user_claim_textview_left_slot, user_claim_textview_site_name, user_claim_textview_modal_name, user_claim_textview_total_amount;
     private EditText user_claim_edittext_login_id, user_claim_edittext_password, user_claim_edittext_other_number, user_claim_textview_time_left;
-
+    MdModel ob;
     private Spinner user_claim_spinner_otp_option, user_claim_spinner_nos_order;
     private RadioButton user_claim_radiobutton_my_number, user_claim_radiobutton_other_mobile, user_claim_radiobutton_cod_yes, user_claim_radiobutton_cod_no, user_claim_radiobutton_cod_idk;
     private RecyclerView user_claim_recycleview_variant;
@@ -48,8 +53,8 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
 
     private String otpSendOn = "", nosOrders = "", otpOnWhatsapp = "", codAvailable = "";
     private boolean payFailAdded = false;
-
-    private UserClaim userClaim;
+    SessionManager sessionManager;
+    private MdModel userClaim;
     private SiteData selectedSiteData;
 
     @Override
@@ -62,7 +67,7 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+            sessionManager=new SessionManager(this);
             coordinatorLayout = findViewById(R.id.coordinatorLayout);
             user_claim_textview_dealer_can_pay = findViewById(R.id.user_claim_textview_dealer_can_pay);
             user_claim_textview_left_slot = findViewById(R.id.user_claim_textview_left_slot);
@@ -94,8 +99,10 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
             user_claim_radiobutton_cod_no.setOnCheckedChangeListener(this);
             user_claim_radiobutton_cod_idk.setOnCheckedChangeListener(this);
 
-            userClaim = UserClaimHistoryListActivity.getActivity().getSelectedUserClaim();
-            selectedSiteData = UserClaimConfirmActivity.getActivity().getSelectedSiteData();
+            Gson gson = new Gson();
+             ob = gson.fromJson(getIntent().getStringExtra("myjson"), MdModel.class);
+            userClaim = ob;//sessionManager.getModel();
+//            selectedSiteData = UserClaimConfirmActivity.getActivity().getSelectedSiteData();
 
             if (userClaim == null) {
                 Snackbar.make(findViewById(R.id.coordinatorLayout), getString(R.string.error_no_data_found), Snackbar.LENGTH_SHORT).show();
@@ -105,7 +112,8 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
             }
 
         } catch (Exception e) {
-            Snackbar.make(findViewById(R.id.coordinatorLayout), getString(R.string.error_try_later), Snackbar.LENGTH_SHORT).show();
+            Log.d("mdpayfail","pay fail error 1"+e.getLocalizedMessage());
+            Snackbar.make(findViewById(R.id.coordinatorLayout), "md "+getString(R.string.error_try_later)+" "+e.getLocalizedMessage(), Snackbar.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
@@ -113,15 +121,17 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
     private void setDataInViews() {
         try {
             if (userClaim != null) {
-                user_claim_textview_dealer_can_pay.setText(userClaim.getCan_pay() + "");
-                user_claim_textview_left_slot.setText(userClaim.getCan_pay_left() + "");
-                user_claim_textview_site_name.setText(selectedSiteData.getSite_name() + "");
-                user_claim_textview_modal_name.setText(userClaim.getModel_name() + "");
+                user_claim_textview_dealer_can_pay.setText("demo data");
+                String totalQuantity= ShPrefUserDetails.getStringData("totalquantity",this);
+                user_claim_textview_left_slot.setText(totalQuantity);
+                String sitename=ShPrefUserDetails.getStringData("sitename",this);
+                user_claim_textview_site_name.setText(sitename);
+                user_claim_textview_modal_name.setText(userClaim.getModelName());
 
                 otpOnWhatsapp = AppURLParams.statusVal0;
                 codAvailable = AppURLParams.statusVal1;
-
-                ArrayList<ModalVariant> modalVariantArrayList = selectedSiteData.getModalVariantArrayList();
+                 Log.d("mdpayfail","pay fail user claim not emplty");
+                List<Variant> modalVariantArrayList = userClaim.getVariant();
                 if (modalVariantArrayList != null && modalVariantArrayList.size() > 0) {
                     user_claim_recycleview_variant.setVisibility(View.VISIBLE);
 
@@ -134,63 +144,15 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
                     user_claim_recycleview_variant.setVisibility(View.GONE);
                 }
 
-                PayFailData payFailData = selectedSiteData.getPayFailData();
-                if (payFailData != null) {
-                    user_claim_edittext_login_id.setText(payFailData.getUsername() + "");
-                    user_claim_edittext_password.setText(payFailData.getPassword() + "");
 
-                    if (!payFailData.getOtp_send_on().equals("")) {
-                        String[] arr = getResources().getStringArray(R.array.otp_method_arrays);
-                        if (payFailData.getOtp_send_on().equals(arr[0])) {
-                            user_claim_spinner_otp_option.setSelection(0);
-                        } else if (payFailData.getOtp_send_on().equals(arr[1])) {
-                            user_claim_spinner_otp_option.setSelection(1);
-                        } else if (payFailData.getOtp_send_on().equals(arr[2])) {
-                            user_claim_spinner_otp_option.setSelection(2);
-                        }
-
-                        String mobileNo = ShPrefUserDetails.getWhatsapp_no(this);
-                        if (mobileNo.equals(payFailData.getWhatsapp_no())) {
-                            user_claim_radiobutton_my_number.setChecked(true);
-                            otpOnWhatsapp = AppURLParams.statusVal0;
-                            user_claim_edittext_other_number.setVisibility(View.GONE);
-                        } else {
-                            user_claim_radiobutton_other_mobile.setChecked(true);
-                            otpOnWhatsapp = AppURLParams.statusVal1;
-                            user_claim_edittext_other_number.setVisibility(View.VISIBLE);
-                            user_claim_edittext_other_number.setText(payFailData.getWhatsapp_no() + "");
-                        }
-                    }
-
-                    String nosOrder = payFailData.getNo_of_orders();
-                    if (!nosOrder.equals("")) {
-                        int i = Integer.parseInt(nosOrder);
-                        user_claim_spinner_nos_order.setSelection(i - 1);
-                    }
-
-                    user_claim_textview_time_left.setText(payFailData.getTime_left() + "");
-                    user_claim_textview_total_amount.setText(getString(R.string.rupees) + " " + payFailData.getTotal_amount() + "");
-
-                    if (!payFailData.getIs_cod_available().equals("")) {
-                        codAvailable = payFailData.getIs_cod_available();
-                    }
-                    if (codAvailable.equals(AppURLParams.statusVal1)) {
-                        user_claim_radiobutton_cod_yes.setChecked(true);
-
-                    } else if (codAvailable.equals(AppURLParams.statusVal2)) {
-                        user_claim_radiobutton_cod_no.setChecked(true);
-
-                    } else if (codAvailable.equals(AppURLParams.statusVal3)) {
-                        user_claim_radiobutton_cod_idk.setChecked(true);
-                    }
-                }
 
             } else {
                 Snackbar.make(coordinatorLayout, getString(R.string.error_no_user_profile), Snackbar.LENGTH_LONG).show();
                 return;
             }
         } catch (Exception e) {
-            Snackbar.make(coordinatorLayout, getString(R.string.error_try_later), Snackbar.LENGTH_SHORT).show();
+            Log.d("mdpayfail","pay fail error 2 " +e.getLocalizedMessage());
+            Snackbar.make(coordinatorLayout, "md "+getString(R.string.error_try_later)+" "+e.getLocalizedMessage(), Snackbar.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
@@ -198,13 +160,13 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
     public void updateAmountToPaid() {
         try {
             int total = 0;
-            ArrayList<ModalVariant> variantDataArrayList = selectedSiteData.getModalVariantArrayList();
+            List<Variant> variantDataArrayList = ob.getVariant();
             if (variantDataArrayList != null && variantDataArrayList.size() > 0) {
                 for (int i = 0; i < variantDataArrayList.size(); i++) {
-                    ModalVariant siteVariantData = variantDataArrayList.get(i);
-                    Log.d(TAG, siteVariantData.getPayfail_quantity() + "|" + siteVariantData.getVariant_price());
-                    if (!siteVariantData.getPayfail_quantity().equals("") && !siteVariantData.getVariant_price().equals("")) {
-                        total += Integer.parseInt(siteVariantData.getPayfail_quantity()) * Integer.parseInt(siteVariantData.getVariant_price());
+                    Variant siteVariantData = variantDataArrayList.get(i);
+                   // Log.d(TAG, siteVariantData.getPayfail_quantity() + "|" + siteVariantData.getVariant_price());
+                    if (!siteVariantData.getPayfailquantity().equals("")) {
+                        total += Integer.parseInt(siteVariantData.getPayfailquantity()) * Integer.parseInt("5");
                     }
                 }
             }
@@ -342,17 +304,17 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
                 return;
             }
 
-            ArrayList<ModalVariant> siteVariantDataArrayList = selectedSiteData.getModalVariantArrayList();
+            List<Variant> siteVariantDataArrayList = ob.getVariant();
             int totalPayFailQuantity = 0;
             if (siteVariantDataArrayList != null && siteVariantDataArrayList.size() > 0) {
                 for (int i = 0; i < siteVariantDataArrayList.size(); i++) {
-                    ModalVariant siteVariantData = siteVariantDataArrayList.get(i);
-                    if (siteVariantData.getPayfail_quantity().equals("")) {
+                    Variant siteVariantData = siteVariantDataArrayList.get(i);
+                    if (siteVariantData.getPayfailquantity().equals("")) {
                         Snackbar.make(coordinatorLayout, getString(R.string.error_empty_payfail_quantity), Snackbar.LENGTH_SHORT).show();
                         return;
                     }
 
-                    int qty = Integer.parseInt(siteVariantData.getPayfail_quantity());
+                    int qty = Integer.parseInt(siteVariantData.getPayfailquantity());
                     totalPayFailQuantity += qty;
                 }
 
@@ -367,13 +329,13 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
             }
 
             int total = 0;
-            ArrayList<ModalVariant> variantDataArrayList = selectedSiteData.getModalVariantArrayList();
+            List<Variant> variantDataArrayList = ob.getVariant();
             if (variantDataArrayList != null && variantDataArrayList.size() > 0) {
                 for (int i = 0; i < variantDataArrayList.size(); i++) {
-                    ModalVariant siteVariantData = variantDataArrayList.get(i);
-                    Log.d(TAG, siteVariantData.getPayfail_quantity() + "|" + siteVariantData.getVariant_price());
-                    if (!siteVariantData.getPayfail_quantity().equals("") && !siteVariantData.getVariant_price().equals("")) {
-                        total += Integer.parseInt(siteVariantData.getPayfail_quantity()) * Integer.parseInt(siteVariantData.getVariant_price());
+                    Variant siteVariantData = variantDataArrayList.get(i);
+                    Log.d(TAG, siteVariantData.getPayfailquantity() + "|" + "5");
+                    if (!siteVariantData.getPayfailquantity().equals("")) {
+                        total += Integer.parseInt(siteVariantData.getPayfailquantity()) * Integer.parseInt("5");
                     }
                 }
             }

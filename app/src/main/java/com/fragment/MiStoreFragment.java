@@ -20,9 +20,12 @@ import com.adapter.SendDataToServer;
 import com.bookkr.user.MdConfirmClaimActivity;
 import com.bookkr.user.R;
 import com.bookkr.user.UserClaimPayFailDetailsActivity;
+import com.google.gson.Gson;
 import com.model.confirmclaim.Datum;
+import com.model.confirmclaim.MdModel;
 import com.model.confirmclaim.MdSiteData;
 import com.model.confirmclaim.Variant;
+import com.preferences.SessionManager;
 import com.preferences.ShPrefUserDetails;
 
 import java.util.List;
@@ -37,7 +40,11 @@ public class MiStoreFragment extends Fragment implements View.OnClickListener {
     MdClaimConfirmAdapter adapter;
     View view;
     String requiremenr_id,claim_id,totalQuantity;
-    Button button;
+    Button button,updatePayfailBtn;
+    String modelNamed;
+   SessionManager sessionManager;
+    private Integer requirementModelId;
+
 
     public MiStoreFragment(List<Datum> dataList) {
         this.dataList = dataList;
@@ -56,22 +63,19 @@ public class MiStoreFragment extends Fragment implements View.OnClickListener {
         Log.d("serajdatadebug","ccdfdfse");
         button=view.findViewById(R.id.cnfmbtn);
         crv.setLayoutManager(new LinearLayoutManager(getContext()));
-        view.findViewById(R.id.update).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
-                List<Variant> variants= adapter.getUpdatedData();
-                Intent intent = new Intent(getContext(), UserClaimPayFailDetailsActivity.class);
-                startActivity(intent);
-            }
-        });
-
+        updatePayfailBtn=view.findViewById(R.id.update);
+        sessionManager=new SessionManager(getContext());
 
         for(int i=0;i<dataList.size();i++){
             if(dataList.get(i).getSiteName().equalsIgnoreCase("Amazon")){
                 variantList=dataList.get(i).getModel().get(0).getVariant();
                 dealerName.setText(""+dataList.get(i).getDealerName());
                 modelName.setText(""+dataList.get(i).getModel().get(0).getModelName());
+                requirementModelId=dataList.get(i).getModel().get(0).getRequirementModelId();
+                modelNamed=""+dataList.get(i).getModel().get(0).getModelName();
+
+                ShPrefUserDetails.setStringData(getContext(),"sitename",dataList.get(i).getSiteName());
+
 
                 break;
             }
@@ -91,6 +95,24 @@ public class MiStoreFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 sendData();
+            }
+        });
+
+
+        updatePayfailBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
+                List<Variant> variants= adapter.getUpdatedData();
+                MdModel mdModel= new MdModel(requirementModelId,modelNamed,variants);
+
+                Gson gson = new Gson();
+                String mdt = gson.toJson(mdModel);
+
+                sessionManager.setModel(mdModel);
+                Intent intent = new Intent(getContext(), UserClaimPayFailDetailsActivity.class);
+                intent.putExtra("myjson", mdt);
+                startActivity(intent);
             }
         });
 
