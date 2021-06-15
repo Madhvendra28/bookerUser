@@ -13,6 +13,7 @@ import com.bookkr.user.R;
 import com.bookkr.user.UserClaimPayFailDetailsActivity;
 import com.model.ModalVariant;
 import com.model.confirmclaim.Variant;
+import com.model.payfailModel.VariantDatum;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +24,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class PayFailModalVariantRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Activity activity;
-    private List<Variant> list;
+    private List<VariantDatum> list;
 
-    public PayFailModalVariantRecyclerAdapter(Activity activity, List<Variant> list) {
+    public PayFailModalVariantRecyclerAdapter(Activity activity, List<VariantDatum> list) {
         this.activity = activity;
         this.list = list;
     }
@@ -66,10 +67,10 @@ public class PayFailModalVariantRecyclerAdapter extends RecyclerView.Adapter<Rec
 
         private void bindAddressListItems(PayFailModalVariantRecyclerAdapter adapter, final int position) {
             try {
-                final Variant modalVariant = list.get(position);
+                final VariantDatum modalVariant = list.get(position);
                 adapter_textview_variant_name.setText(modalVariant.getVariantName());
                 adapter_textview_variant_price.setText( "123");
-                adapter_edittext_fail_quantity.setText(modalVariant.getPayFail() + "");
+
 
                 adapter_edittext_fail_quantity.addTextChangedListener(new TextWatcher() {
 
@@ -82,7 +83,7 @@ public class PayFailModalVariantRecyclerAdapter extends RecyclerView.Adapter<Rec
 
                     public void afterTextChanged(Editable s) {
                         String string = s.toString();
-                        modalVariant.setPayfailquantity(string);
+                       // modalVariant.setPayfailquantity(string);
                         ((UserClaimPayFailDetailsActivity) activity).updateAmountToPaid();
                     }
                 });

@@ -1,5 +1,6 @@
 package com.bookkr.user;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 
@@ -12,8 +13,12 @@ import com.model.SiteData;
 import com.model.UserClaim;
 import com.model.confirmclaim.MdModel;
 import com.model.confirmclaim.Variant;
+import com.model.payfailModel.Data;
+import com.model.payfailModel.PayFailResponse;
+import com.model.payfailModel.VariantDatum;
 import com.preferences.SessionManager;
 import com.preferences.ShPrefUserDetails;
+import com.retrofit.APIClient;
 import com.utils.AppURLParams;
 import com.utils.AppUtils;
 
@@ -30,12 +35,17 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UserClaimPayFailDetailsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener {
 
@@ -55,13 +65,33 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
     private String otpSendOn = "", nosOrders = "", otpOnWhatsapp = "", codAvailable = "";
     private boolean payFailAdded = false;
     SessionManager sessionManager;
-    private MdModel userClaim;
+    private Data userClaim;
     private SiteData selectedSiteData;
+//    RecyclerView lin;
+//    Button addModelbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_claim_pay_fail_details);
+
+//        lin = findViewById(R.id.user_claim_recycleview_variant);
+//        lin.removeAllViews();
+//        addModelbutton=findViewById(R.id.addModelbutton);
+//
+//        addModelbutton.setOnClickListener(new View.OnClickListener() {
+//            @SuppressLint("ResourceType")
+//            @Override
+//            public void onClick(View v) {
+//
+//                TextView txtName = new TextView(UserClaimPayFailDetailsActivity.this);
+//                txtName.setId(20);
+//                txtName.setText("new text");
+//
+//                lin.addView(txtName);
+//
+//            }
+//        });
 
         try {
             Toolbar toolbar = findViewById(R.id.toolbar);
@@ -99,40 +129,63 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
             user_claim_radiobutton_cod_yes.setOnCheckedChangeListener(this);
             user_claim_radiobutton_cod_no.setOnCheckedChangeListener(this);
             user_claim_radiobutton_cod_idk.setOnCheckedChangeListener(this);
+            String userId = ShPrefUserDetails.getToken(this);
+            Call<PayFailResponse> call = APIClient.getInterface().getPayfailData(userId,"21");
 
-            Gson gson = new Gson();
-             ob = gson.fromJson(getIntent().getStringExtra("myjson"), MdModel.class);
-            userClaim = ob;//sessionManager.getModel();
+             call.enqueue(new Callback<PayFailResponse>() {
+                 @Override
+                 public void onResponse(Call<PayFailResponse> call, Response<PayFailResponse> response) {
+                     Log.d("serajpayfaildata","response payfail status : "+response.isSuccessful());
+                     if (response.isSuccessful()){
+                         PayFailResponse payFailResponse=response.body();
+                         userClaim = payFailResponse.getData();
+                         if (userClaim == null) {
+                             Snackbar.make(findViewById(R.id.coordinatorLayout), getString(R.string.error_no_data_found), Snackbar.LENGTH_SHORT).show();
+                             return;
+                         } else {
+                             setDataInViews(payFailResponse.getData());
+                         }
+                         Log.d("serajpayfaildata","response status : "+payFailResponse.getData().getSiteLogo());
+                     }
+                    // PayFailResponse payFailResponse=response.body();
+
+                 }
+
+                 @Override
+                 public void onFailure(Call<PayFailResponse> call, Throwable t) {
+                      Log.d("serajpayfaildata","error : "+t.getLocalizedMessage());
+                 }
+             });
+
+
+
+           // userClaim = ob;//sessionManager.getModel();
 //            selectedSiteData = UserClaimConfirmActivity.getActivity().getSelectedSiteData();
 
-            if (userClaim == null) {
-                Snackbar.make(findViewById(R.id.coordinatorLayout), getString(R.string.error_no_data_found), Snackbar.LENGTH_SHORT).show();
-                return;
-            } else {
-                setDataInViews();
-            }
+
 
         } catch (Exception e) {
-            Log.d("mdpayfail","pay fail error 1"+e.getLocalizedMessage());
+            Log.d("serajpayfaildata","pay fail error 1"+e.getLocalizedMessage());
             Snackbar.make(findViewById(R.id.coordinatorLayout), "md "+getString(R.string.error_try_later)+" "+e.getLocalizedMessage(), Snackbar.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
 
-    private void setDataInViews() {
+    private void setDataInViews(Data mydata) {
         try {
-            if (userClaim != null) {
-                user_claim_textview_dealer_can_pay.setText("demo data");
+            if (mydata != null) {
+                Log.d("serajpayfaildata","Setting data error");
+                user_claim_textview_dealer_can_pay.setText(""+mydata.getDealerCanPay());
                 String totalQuantity= ShPrefUserDetails.getStringData("totalquantity",this);
                 user_claim_textview_left_slot.setText(totalQuantity);
                 String sitename=ShPrefUserDetails.getStringData("sitename",this);
                 user_claim_textview_site_name.setText(sitename);
-                user_claim_textview_modal_name.setText(userClaim.getModelName());
+                user_claim_textview_modal_name.setText(""+mydata.getModelData().get(0).getModelName());
 
                 otpOnWhatsapp = AppURLParams.statusVal0;
                 codAvailable = AppURLParams.statusVal1;
                  Log.d("mdpayfail","pay fail user claim not emplty");
-                List<Variant> modalVariantArrayList = userClaim.getVariant();
+                List<VariantDatum> modalVariantArrayList = mydata.getModelData().get(0).getVariantData();
                 if (modalVariantArrayList != null && modalVariantArrayList.size() > 0) {
                     user_claim_recycleview_variant.setVisibility(View.VISIBLE);
 
@@ -152,8 +205,8 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
                 return;
             }
         } catch (Exception e) {
-            Log.d("mdpayfail","pay fail error 2 " +e.getLocalizedMessage());
-            Snackbar.make(coordinatorLayout, "md "+getString(R.string.error_try_later)+" "+e.getLocalizedMessage(), Snackbar.LENGTH_SHORT).show();
+            Log.d("serajpayfaildata","pay fail error 2 " +e.getLocalizedMessage());
+            Snackbar.make(coordinatorLayout, getString(R.string.error_try_later)+" "+e.getLocalizedMessage(), Snackbar.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
