@@ -52,6 +52,9 @@ public class PayFailModalVariantRecyclerAdapter extends RecyclerView.Adapter<Rec
         }
     }
 
+    public List<VariantDatum> getVarientData(){
+        return list;
+    }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -83,7 +86,7 @@ public class PayFailModalVariantRecyclerAdapter extends RecyclerView.Adapter<Rec
 
                     public void afterTextChanged(Editable s) {
                         String string = s.toString();
-                       // modalVariant.setPayfailquantity(string);
+                        modalVariant.setPayFailQuantity(string);
                         ((UserClaimPayFailDetailsActivity) activity).updateAmountToPaid();
                     }
                 });

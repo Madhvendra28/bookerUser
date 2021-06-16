@@ -63,6 +63,7 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
     private final String TAG = "PayFailDetails";
 
     private int requestFor = -1, clickedFor = 0;
+    PayFailModalVariantRecyclerAdapter adapter;
 
     private String otpSendOn = "", nosOrders = "", otpOnWhatsapp = "", codAvailable = "";
     private boolean payFailAdded = false;
@@ -145,7 +146,7 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
                              Snackbar.make(findViewById(R.id.coordinatorLayout), getString(R.string.error_no_data_found), Snackbar.LENGTH_SHORT).show();
                              return;
                          } else {
-                             myrdata=payFailResponse.getData()
+                             myrdata=payFailResponse.getData();
                              setDataInViews(payFailResponse.getData());
                          }
                          Log.d("serajpayfaildata","response status : "+payFailResponse.getData().getSiteLogo());
@@ -193,7 +194,9 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
                     user_claim_recycleview_variant.setVisibility(View.VISIBLE);
 
                     user_claim_recycleview_variant.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-                    PayFailModalVariantRecyclerAdapter adapter = new PayFailModalVariantRecyclerAdapter(this, modalVariantArrayList);
+                    Log.d("serajpayfaildata","Setting adapter");
+                     adapter = new PayFailModalVariantRecyclerAdapter(this, modalVariantArrayList);
+
                     user_claim_recycleview_variant.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
 
@@ -361,17 +364,17 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
                 return;
             }
 
-            List<VariantDatum> siteVariantDataArrayList = mydata;
+            List<VariantDatum> siteVariantDataArrayList = adapter.getVarientData();
             int totalPayFailQuantity = 0;
             if (siteVariantDataArrayList != null && siteVariantDataArrayList.size() > 0) {
                 for (int i = 0; i < siteVariantDataArrayList.size(); i++) {
-                    Variant siteVariantData = siteVariantDataArrayList.get(i);
-                    if (siteVariantData.getPayfailquantity().equals("")) {
+                    VariantDatum siteVariantData = siteVariantDataArrayList.get(i);
+                    if (siteVariantData.getPayFailQuantity().equals("")) {
                         Snackbar.make(coordinatorLayout, getString(R.string.error_empty_payfail_quantity), Snackbar.LENGTH_SHORT).show();
                         return;
                     }
 
-                    int qty = Integer.parseInt(siteVariantData.getPayfailquantity());
+                    int qty = Integer.parseInt(siteVariantData.getPayFailQuantity());
                     totalPayFailQuantity += qty;
                 }
 
@@ -386,13 +389,13 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
             }
 
             int total = 0;
-            List<Variant> variantDataArrayList = ob.getVariant();
+            List<VariantDatum> variantDataArrayList = adapter.getVarientData();
             if (variantDataArrayList != null && variantDataArrayList.size() > 0) {
                 for (int i = 0; i < variantDataArrayList.size(); i++) {
-                    Variant siteVariantData = variantDataArrayList.get(i);
-                    Log.d(TAG, siteVariantData.getPayfailquantity() + "|" + "5");
-                    if (!siteVariantData.getPayfailquantity().equals("")) {
-                        total += Integer.parseInt(siteVariantData.getPayfailquantity()) * Integer.parseInt("5");
+                    VariantDatum siteVariantData = variantDataArrayList.get(i);
+                    Log.d(TAG, siteVariantData.getPayFailQuantity() + "|" + "5");
+                    if (!siteVariantData.getPayFailQuantity().equals("")) {
+                        total += Integer.parseInt(siteVariantData.getPayFailQuantity()) * Integer.parseInt(""+siteVariantData.getVariantPrice());
                     }
                 }
             }

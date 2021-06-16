@@ -21,12 +21,24 @@ public class VariantDatum {
     @Expose
     private Integer variantPrice;
 
+    @SerializedName("pay_fail_quantity")
+    @Expose
+    private String payFailQuantity;
+
     public Integer getRequirementVariantId() {
         return requirementVariantId;
     }
 
     public void setRequirementVariantId(Integer requirementVariantId) {
         this.requirementVariantId = requirementVariantId;
+    }
+
+    public String getPayFailQuantity() {
+        return payFailQuantity;
+    }
+
+    public void setPayFailQuantity(String payFailQuantity) {
+        this.payFailQuantity = payFailQuantity;
     }
 
     public Integer getVariantId() {
