@@ -53,6 +53,8 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
     private TextView user_claim_textview_dealer_can_pay, user_claim_textview_left_slot, user_claim_textview_site_name, user_claim_textview_modal_name, user_claim_textview_total_amount;
     private EditText user_claim_edittext_login_id, user_claim_edittext_password, user_claim_edittext_other_number, user_claim_textview_time_left;
     MdModel ob;
+
+    Data myrdata;
     private Spinner user_claim_spinner_otp_option, user_claim_spinner_nos_order;
     private RadioButton user_claim_radiobutton_my_number, user_claim_radiobutton_other_mobile, user_claim_radiobutton_cod_yes, user_claim_radiobutton_cod_no, user_claim_radiobutton_cod_idk;
     private RecyclerView user_claim_recycleview_variant;
@@ -143,6 +145,7 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
                              Snackbar.make(findViewById(R.id.coordinatorLayout), getString(R.string.error_no_data_found), Snackbar.LENGTH_SHORT).show();
                              return;
                          } else {
+                             myrdata=payFailResponse.getData()
                              setDataInViews(payFailResponse.getData());
                          }
                          Log.d("serajpayfaildata","response status : "+payFailResponse.getData().getSiteLogo());
@@ -177,7 +180,7 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
                 Log.d("serajpayfaildata","Setting data error");
                 user_claim_textview_dealer_can_pay.setText(""+mydata.getDealerCanPay());
                 String totalQuantity= ShPrefUserDetails.getStringData("totalquantity",this);
-                user_claim_textview_left_slot.setText(totalQuantity);
+                user_claim_textview_left_slot.setText(mydata.getLeftSlot());
                 String sitename=ShPrefUserDetails.getStringData("sitename",this);
                 user_claim_textview_site_name.setText(sitename);
                 user_claim_textview_modal_name.setText(""+mydata.getModelData().get(0).getModelName());
@@ -358,7 +361,7 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
                 return;
             }
 
-            List<Variant> siteVariantDataArrayList = ob.getVariant();
+            List<VariantDatum> siteVariantDataArrayList = mydata;
             int totalPayFailQuantity = 0;
             if (siteVariantDataArrayList != null && siteVariantDataArrayList.size() > 0) {
                 for (int i = 0; i < siteVariantDataArrayList.size(); i++) {
