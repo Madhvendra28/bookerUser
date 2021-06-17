@@ -178,12 +178,12 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
     private void setDataInViews(Data mydata) {
         try {
             if (mydata != null) {
-                Log.d("serajpayfaildata","Setting data error");
+                Log.d("serajpayfaildata","Setting data error d " +mydata.getModelData().get(0).getModelName());
                 user_claim_textview_dealer_can_pay.setText(""+mydata.getDealerCanPay());
-                String totalQuantity= ShPrefUserDetails.getStringData("totalquantity",this);
-                user_claim_textview_left_slot.setText(mydata.getLeftSlot());
+                //String totalQuantity= ShPrefUserDetails.getStringData("totalquantity",this);
+               user_claim_textview_left_slot.setText(""+mydata.getLeftSlot());
                 String sitename=ShPrefUserDetails.getStringData("sitename",this);
-                user_claim_textview_site_name.setText(sitename);
+                user_claim_textview_site_name.setText(""+sitename);
                 user_claim_textview_modal_name.setText(""+mydata.getModelData().get(0).getModelName());
 
                 otpOnWhatsapp = AppURLParams.statusVal0;
@@ -376,6 +376,8 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
 
                     int qty = Integer.parseInt(siteVariantData.getPayFailQuantity());
                     totalPayFailQuantity += qty;
+
+                    Log.d("serajpayfaildata",""+totalPayFailQuantity);
                 }
 
                 if (totalPayFailQuantity == 0) {
@@ -396,29 +398,32 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
                     Log.d(TAG, siteVariantData.getPayFailQuantity() + "|" + "5");
                     if (!siteVariantData.getPayFailQuantity().equals("")) {
                         total += Integer.parseInt(siteVariantData.getPayFailQuantity()) * Integer.parseInt(""+siteVariantData.getVariantPrice());
+                        Log.d("serajpayfaildata",""+total);
                     }
                 }
             }
 
-            PayFailData payFailData = null;
-            if (selectedSiteData.getPayFailData() != null) {
-                payFailData = selectedSiteData.getPayFailData();
-            } else {
-                payFailData = new PayFailData();
-            }
+//            PayFailData payFailData = null;
+//            if (selectedSiteData.getPayFailData() != null) {
+//                payFailData = selectedSiteData.getPayFailData();
+//            } else {
+//                payFailData = new PayFailData();
+//            }
+//
+//            payFailData.setUsername(loginId);
+//            payFailData.setPassword(password);
+//            payFailData.setOtp_send_on(otpSendOn);
+//            payFailData.setWhatsapp_no(otherNumber);
+//            payFailData.setNo_of_orders(nosOrders);
+//            payFailData.setTime_left(timeMins);
+//            payFailData.setIs_cod_available(codAvailable);
+//            payFailData.setTotal_amount(total + "");
+//            selectedSiteData.setPayFailData(payFailData);
+//
+//            payFailAdded = true;
+           // onBackPressed();
 
-            payFailData.setUsername(loginId);
-            payFailData.setPassword(password);
-            payFailData.setOtp_send_on(otpSendOn);
-            payFailData.setWhatsapp_no(otherNumber);
-            payFailData.setNo_of_orders(nosOrders);
-            payFailData.setTime_left(timeMins);
-            payFailData.setIs_cod_available(codAvailable);
-            payFailData.setTotal_amount(total + "");
-            selectedSiteData.setPayFailData(payFailData);
-
-            payFailAdded = true;
-            onBackPressed();
+            sendDatatoServer()
 
         } catch (Exception e) {
             Snackbar.make(coordinatorLayout, getString(R.string.error_try_later), Snackbar.LENGTH_SHORT).show();

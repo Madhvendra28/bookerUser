@@ -311,6 +311,7 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/open_sans_semibold"
                     android:gravity="left|center_vertical"
+                    android:id="@+id/user_claim_textview_modal_name"
                     android:text="@string/modal_name"
                     android:textColor="@color/textColorBlack"
                     android:textSize="@dimen/mini_text_size" />
@@ -330,10 +331,11 @@
                     android:scrollbars="none" />
 
                 <TextView
-                    android:id="@+id/user_claim_textview_modal_name"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+
                     android:fontFamily="@font/barlow_condensed_semobold"
                     android:gravity="left|center_vertical"
                     android:textColor="@color/textColorBlack"
