@@ -45,7 +45,6 @@ public class MiStoreFragment extends Fragment implements View.OnClickListener {
    SessionManager sessionManager;
     private Integer requirementModelId;
 
-
     public MiStoreFragment(List<Datum> dataList) {
         this.dataList = dataList;
     }
@@ -65,7 +64,6 @@ public class MiStoreFragment extends Fragment implements View.OnClickListener {
         crv.setLayoutManager(new LinearLayoutManager(getContext()));
         updatePayfailBtn=view.findViewById(R.id.update);
         sessionManager=new SessionManager(getContext());
-
         for(int i=0;i<dataList.size();i++){
             if(dataList.get(i).getSiteName().equalsIgnoreCase("Amazon")){
                 variantList=dataList.get(i).getModel().get(0).getVariant();

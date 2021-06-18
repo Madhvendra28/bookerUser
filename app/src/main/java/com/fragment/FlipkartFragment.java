@@ -1,5 +1,6 @@
 package com.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,16 +18,20 @@ import android.widget.Toast;
 import com.adapter.MdClaimConfirmAdapter;
 import com.adapter.SendDataToServer;
 import com.bookkr.user.R;
+import com.bookkr.user.UserClaimPayFailDetailsActivity;
+import com.google.gson.Gson;
 import com.model.confirmclaim.Datum;
+import com.model.confirmclaim.MdModel;
 import com.model.confirmclaim.MdSiteData;
 import com.model.confirmclaim.Variant;
+import com.preferences.SessionManager;
 import com.preferences.ShPrefUserDetails;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class FlipkartFragment extends Fragment {
+public class FlipkartFragment extends Fragment implements View.OnClickListener{
 
     List<Datum> dataList;
     List<Variant> variantList;
@@ -34,8 +39,11 @@ public class FlipkartFragment extends Fragment {
     RecyclerView crv;
     MdClaimConfirmAdapter adapter;
     View view;
-    Button button;
+    Button button,updatePayfailBtn;
     String requiremenr_id,claim_id,totalQuantity;
+    String modelNamed;
+    SessionManager sessionManager;
+    private Integer requirementModelId;
 
     public FlipkartFragment(List<Datum> dataList) {
         this.dataList = dataList;
@@ -53,14 +61,17 @@ public class FlipkartFragment extends Fragment {
         quantity=view.findViewById(R.id.tv_quantity);
         modelName=view.findViewById(R.id.tv_modelname);
         button = view.findViewById(R.id.payfailButton);
-        Log.d("serajdatadebug","ccdfdfse");
         crv.setLayoutManager(new LinearLayoutManager(getContext()));
-        variantList = new ArrayList<>();
+        updatePayfailBtn=view.findViewById(R.id.update);
+        sessionManager=new SessionManager(getContext());
         for(int i=0;i<dataList.size();i++){
-            if(dataList.get(i).getSiteName().equalsIgnoreCase("FlipKart")){
+            if(dataList.get(i).getSiteName().equalsIgnoreCase("Amazon")){
                 variantList=dataList.get(i).getModel().get(0).getVariant();
                 dealerName.setText(""+dataList.get(i).getDealerName());
                 modelName.setText(""+dataList.get(i).getModel().get(0).getModelName());
+                requirementModelId=dataList.get(i).getModel().get(0).getRequirementModelId();
+                modelNamed=""+dataList.get(i).getModel().get(0).getModelName();
+                ShPrefUserDetails.setStringData(getContext(),"sitename",dataList.get(i).getSiteName());
                 break;
             }
         }
@@ -78,6 +89,23 @@ public class FlipkartFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 sendData();
+            }
+        });
+
+        updatePayfailBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
+                List<Variant> variants= adapter.getUpdatedData();
+                MdModel mdModel= new MdModel(requirementModelId,modelNamed,variants);
+
+                Gson gson = new Gson();
+                String mdt = gson.toJson(mdModel);
+
+                sessionManager.setModel(mdModel);
+                Intent intent = new Intent(getContext(), UserClaimPayFailDetailsActivity.class);
+                intent.putExtra("myjson", mdt);
+                startActivity(intent);
             }
         });
 
@@ -101,5 +129,23 @@ public class FlipkartFragment extends Fragment {
     private void setData() {
         adapter=new MdClaimConfirmAdapter(variantList,getContext());
         crv.setAdapter(adapter);
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id)
+        {
+            case R.id.update:
+                Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
+                List<Variant> variants= adapter.getUpdatedData();
+                Intent intent = new Intent(getContext(), UserClaimPayFailDetailsActivity.class);
+                startActivity(intent);
+
+                break;
+            default:
+                Toast.makeText(getContext(), "Please provide id first", Toast.LENGTH_SHORT).show();
+        }
     }
 }

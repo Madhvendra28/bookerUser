@@ -423,7 +423,7 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
 //            payFailAdded = true;
            // onBackPressed();
 
-            sendDatatoServer()
+            sendDatatoServer();
 
         } catch (Exception e) {
             Snackbar.make(coordinatorLayout, getString(R.string.error_try_later), Snackbar.LENGTH_SHORT).show();
