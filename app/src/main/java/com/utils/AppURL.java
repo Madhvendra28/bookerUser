@@ -36,6 +36,7 @@ public class AppURL {
     private static final String userClaimHistory = "userClaimHistory";
     private static final String bookingFail = "bookingFail";
     private static final String claimConfirm = "claimConfirm"; //"claimConfirm"
+    private static final String payfailsubmit = "userPayFailSubmit";
 
     private static final String userShippingUpdate = "userShippingUpdate";
     private static final String userShippingHistory = "userShippingHistory";
@@ -111,6 +112,10 @@ public class AppURL {
 
     public static String getClaimConfirm() {
         return claimConfirm;
+    }
+
+    public static String getPayfailSubmit() {
+        return payfailsubmit;
     }
 
     public static String getBookingFail() {

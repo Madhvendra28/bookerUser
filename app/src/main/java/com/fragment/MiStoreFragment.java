@@ -28,6 +28,7 @@ import com.model.confirmclaim.Variant;
 import com.preferences.SessionManager;
 import com.preferences.ShPrefUserDetails;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -42,7 +43,7 @@ public class MiStoreFragment extends Fragment implements View.OnClickListener {
     String requiremenr_id,claim_id,totalQuantity;
     Button button,updatePayfailBtn;
     String modelNamed;
-   SessionManager sessionManager;
+    SessionManager sessionManager;
     private Integer requirementModelId;
 
     public MiStoreFragment(List<Datum> dataList) {
@@ -54,7 +55,7 @@ public class MiStoreFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view =inflater.inflate(R.layout.fragment_mi_store, container, false);
-
+        variantList = new ArrayList<>();
         crv=view.findViewById(R.id.claim_rv);
         dealerName=view.findViewById(R.id.tv_dealer);
         quantity=view.findViewById(R.id.tv_quantity);
@@ -65,7 +66,7 @@ public class MiStoreFragment extends Fragment implements View.OnClickListener {
         updatePayfailBtn=view.findViewById(R.id.update);
         sessionManager=new SessionManager(getContext());
         for(int i=0;i<dataList.size();i++){
-            if(dataList.get(i).getSiteName().equalsIgnoreCase("Amazon")){
+            if(dataList.get(i).getSiteName().equalsIgnoreCase("Mi Store")){
                 variantList=dataList.get(i).getModel().get(0).getVariant();
                 dealerName.setText(""+dataList.get(i).getDealerName());
                 modelName.setText(""+dataList.get(i).getModel().get(0).getModelName());
@@ -110,6 +111,7 @@ public class MiStoreFragment extends Fragment implements View.OnClickListener {
                 sessionManager.setModel(mdModel);
                 Intent intent = new Intent(getContext(), UserClaimPayFailDetailsActivity.class);
                 intent.putExtra("myjson", mdt);
+
                 startActivity(intent);
             }
         });
@@ -120,7 +122,7 @@ public class MiStoreFragment extends Fragment implements View.OnClickListener {
     private void sendData() {
         Log.d("ConfirmClaim","inside send data");
         List<Variant> variants= adapter.getUpdatedData();
-        MdSiteData mdSiteData=new MdSiteData(requiremenr_id,"Amazon",totalQuantity,claim_id,variants);
+        MdSiteData mdSiteData=new MdSiteData(requiremenr_id,"Mi Store",totalQuantity,claim_id,variants);
         SendDataToServer sendDataToServer = new SendDataToServer(getContext(),mdSiteData,getActivity());
 
         boolean status=sendDataToServer.sendCCData();

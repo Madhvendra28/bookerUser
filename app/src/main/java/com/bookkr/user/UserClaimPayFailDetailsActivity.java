@@ -16,6 +16,7 @@ import com.model.confirmclaim.Variant;
 import com.model.payfailModel.Data;
 import com.model.payfailModel.PayFailResponse;
 import com.model.payfailModel.VariantDatum;
+import com.network.SendpayfailDatatoServer;
 import com.preferences.SessionManager;
 import com.preferences.ShPrefUserDetails;
 import com.retrofit.APIClient;
@@ -65,7 +66,7 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
     private int requestFor = -1, clickedFor = 0;
     PayFailModalVariantRecyclerAdapter adapter;
 
-    private String otpSendOn = "", nosOrders = "", otpOnWhatsapp = "", codAvailable = "";
+    private String otpSendOn = "", nosOrders = "", otpOnWhatsapp = "", codAvailable = "",requiremenr_id,claim_id;
     private boolean payFailAdded = false;
     SessionManager sessionManager;
     private Data userClaim;
@@ -133,7 +134,13 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
             user_claim_radiobutton_cod_no.setOnCheckedChangeListener(this);
             user_claim_radiobutton_cod_idk.setOnCheckedChangeListener(this);
             String userId = ShPrefUserDetails.getToken(this);
-            Call<PayFailResponse> call = APIClient.getInterface().getPayfailData(userId,"21");
+
+            requiremenr_id=ShPrefUserDetails.getStringData("requirementid",this);
+            claim_id=ShPrefUserDetails.getStringData("confirmclaimid",this);
+
+            Log.d("serajpayfailsubmit","Claim confirm id "+claim_id);
+            Log.d("serajpayfailsubmit","requirement id "+requiremenr_id);
+            Call<PayFailResponse> call = APIClient.getInterface().getPayfailData(userId,claim_id);
 
              call.enqueue(new Callback<PayFailResponse>() {
                  @Override
@@ -423,7 +430,21 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
 //            payFailAdded = true;
            // onBackPressed();
 
-            sendDatatoServer();
+            //sendDatatoServer();
+
+            SendpayfailDatatoServer sendpayfailDatatoServer=new SendpayfailDatatoServer(getApplicationContext(),adapter.getVarientData(),
+                    this,claim_id+"",requiremenr_id+"",loginId,password,otpSendOn,otherNumber,nosOrders,total+"",
+                    timeMins,codAvailable,myrdata.getModelData().get(0).getRequirementModelId()+"",""+myrdata.getModelData().get(0).getRequirementModelId(),
+                    ""+myrdata.getModelData().get(0).getModelName());
+
+            boolean status = sendpayfailDatatoServer.sendPayFailData();
+
+            if(status){
+                Log.d("serajpayfailsubmit","Successfully send to server");
+            }else{
+                Log.d("serajpayfailsubmit","unssuccessful send to server");
+            }
+
 
         } catch (Exception e) {
             Snackbar.make(coordinatorLayout, getString(R.string.error_try_later), Snackbar.LENGTH_SHORT).show();

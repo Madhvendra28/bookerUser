@@ -7,12 +7,14 @@ import com.model.payfailModel.PayFailResponse;
 import com.preferences.ShPrefUserDetails;
 
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.FieldMap;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -34,6 +36,9 @@ public interface UserService {
 
     @GET("getPayFailData/{claim_confirm_id}")
     Call<PayFailResponse> getPayfailData(@Header("Authorization") String token, @Path("claim_confirm_id") String claim_confirm_id);
+
+    @POST("userPayFailSubmit")
+    Call<ResponseBody> submitPayFail(@Header("Authorization") String token,  @FieldMap Map<String, String> params);
 
     @POST("userLogin")
     Call<JsonObject> getLogin();

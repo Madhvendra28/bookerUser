@@ -59,6 +59,10 @@ public class SendDataToServer {
             siteJSONObject.put(AppURLParams.site_quantity, mdSiteData.getTotal_quantity() + "");
             siteJSONObject.put(AppURLParams.claim_confirm_id, 0 );
 
+            Log.d("mdData",mdSiteData.getSite_name());
+            Log.d("mdData",mdSiteData.getTotal_quantity());
+            Log.d("mdData",mdSiteData.getClaim_confirm_id());
+
 
             List<Variant> siteVariantDataArrayList = mdSiteData.getModalVariantArrayList();
                 if (siteVariantDataArrayList != null && siteVariantDataArrayList.size() > 0) {
@@ -68,21 +72,25 @@ public class SendDataToServer {
                         JSONObject variantJSONObject = new JSONObject();
                         variantJSONObject.put(AppURLParams.requirement_variant_id, modalVariant.getRequirementVariantId() + "");
                         variantJSONObject.put(AppURLParams.claim_quantity_id, 0);
-                        variantJSONObject.put(AppURLParams.cod_quantity, modalVariant.getCod() + "");
-                        variantJSONObject.put(AppURLParams.prepaid_quantity, modalVariant.getPrePaid() + "");
-                        variantJSONObject.put(AppURLParams.payfail_quantity, modalVariant.getPayFail() + "");
-                        variantJSONObject.put(AppURLParams.otp_quantity, "");
+                        variantJSONObject.put("cod", modalVariant.getCod() + "");
+                        variantJSONObject.put("prepaid", modalVariant.getPrePaid() + "");
+                        variantJSONObject.put("requirement_model_id", mdSiteData.getRequirement_model_id() + "");
+                       // variantJSONObject.put(AppURLParams.payfail_quantity, modalVariant.getPayFail() + "");
+                        //variantJSONObject.put(AppURLParams.otp_quantity, "");
                         variantJSONArray.put(variantJSONObject);
+                        Log.d("mdData",modalVariant.getRequirementVariantId().toString());
+                        Log.d("mdData",modalVariant.getCod().toString());
+                        Log.d("mdData",mdSiteData.getRequirement_model_id());
 
                     }
-                    siteJSONObject.put(AppURLParams.variant, variantJSONArray);
+                    siteJSONObject.put("variant_data", variantJSONArray);
 
                 } else {
                     Toast.makeText(context, "No data Found", Toast.LENGTH_SHORT).show();
 
                 }
 
-
+                Log.d("mdData",siteJSONObject.toString());
 
                 siteJSONArray.put(siteJSONObject);
 
@@ -92,10 +100,10 @@ public class SendDataToServer {
 
             RequestParameter parameter = new RequestParameter();
             parameter.setUri(AppURL.getAppURL() + AppURL.getClaimConfirm());
-            parameter.setParam(AppURLParams.claim_requirement_id, mdSiteData.getClaim_confirm_id() + "");
-            parameter.setParam(AppURLParams.requirement_id, mdSiteData.getRequirement_model_id() + "");
-            parameter.setParam(AppURLParams.siteData, siteJSONArray + "");
-            Log.d("ConfirmClaim",parameter.toString());
+            parameter.setParam("claim_requirement_id", mdSiteData.getClaim_confirm_id() + "");
+            parameter.setParam("requirement_id", mdSiteData.getRequirement_model_id() + "");
+            parameter.setParam("data_list", siteJSONArray +"");
+            Log.d("myparameters",parameter.toString());
             Log.d("ConfirmClaim","Api is  called");
             //sendDataListData(parameter);
            return sendDataListData(parameter);

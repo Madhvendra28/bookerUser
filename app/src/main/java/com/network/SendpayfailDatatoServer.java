@@ -13,10 +13,11 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.bookkr.user.UserClaimPayFailDetailsActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.model.RequestParameter;
-import com.model.confirmclaim.MdSiteData;
-import com.model.confirmclaim.Variant;
+
+import com.model.payfailModel.VariantDatum;
 import com.preferences.ShPrefUserDetails;
 import com.utils.AppURL;
 import com.utils.AppURLParams;
@@ -33,46 +34,67 @@ import java.util.Map;
 public class SendpayfailDatatoServer {
 
     Context context;
-    MdSiteData mdSiteData;
-    FragmentActivity activity;
+    List<VariantDatum> variantDatumList;
+    UserClaimPayFailDetailsActivity activity;
+    String claimConfirmId,requirement_id,username,password,otpsendon,whatsappno,number_of_order,total_amoumt,time_left,is_cod_available,pay_fail_model_id,requirement_model_id,model_name;
     boolean respnce;
 
-    public SendpayfailDatatoServer(Context context, MdSiteData mdSiteData, FragmentActivity activity) {
+
+    public SendpayfailDatatoServer(Context context, List<VariantDatum> variantDatumList, UserClaimPayFailDetailsActivity activity, String claimConfirmId, String requirement_id, String username, String password, String otpsendon, String whatsappno, String number_of_order, String total_amoumt, String time_left, String is_cod_available, String pay_fail_model_id, String requirement_model_id, String model_name) {
         this.context = context;
-        this.mdSiteData = mdSiteData;
+        this.variantDatumList = variantDatumList;
         this.activity = activity;
-        this.respnce = false;
+        this.claimConfirmId = claimConfirmId;
+        this.requirement_id = requirement_id;
+        this.username = username;
+        this.password = password;
+        this.otpsendon = otpsendon;
+        this.whatsappno = whatsappno;
+        this.number_of_order = number_of_order;
+        this.total_amoumt = total_amoumt;
+        this.time_left = time_left;
+        this.is_cod_available = is_cod_available;
+        this.pay_fail_model_id = pay_fail_model_id;
+        this.requirement_model_id = requirement_model_id;
+        this.model_name = model_name;
+        this.respnce=false;
     }
 
-    public boolean sendCCData(){
+    public boolean sendPayFailData(){
 
-        if (mdSiteData.equals(null)){
+        if (variantDatumList.equals(null)){
             return false;
         }
 
 
         try {
-            Log.d("ConfirmClaim","Method called");
+            Log.d("serajpayfailsubmit","Method called");
 
             JSONArray siteJSONArray = new JSONArray();
             JSONObject siteJSONObject = new JSONObject();
-            siteJSONObject.put(AppURLParams.site_name, mdSiteData.getSite_name() + "");
-            siteJSONObject.put(AppURLParams.site_quantity, mdSiteData.getTotal_quantity() + "");
-            siteJSONObject.put(AppURLParams.claim_confirm_id, 0 );
+            siteJSONObject.put("pay_fail_model_id", pay_fail_model_id + "");
+            siteJSONObject.put("requirement_model_id", requirement_model_id + "");
+            siteJSONObject.put("model_name", model_name );
 
 
-            List<Variant> siteVariantDataArrayList = mdSiteData.getModalVariantArrayList();
+            List<VariantDatum> siteVariantDataArrayList =variantDatumList;
             if (siteVariantDataArrayList != null && siteVariantDataArrayList.size() > 0) {
                 JSONArray variantJSONArray = new JSONArray();
                 for (int j = 0; j < siteVariantDataArrayList.size(); j++) {
-                    Variant modalVariant = siteVariantDataArrayList.get(j);
+                    VariantDatum modalVariant = siteVariantDataArrayList.get(j);
                     JSONObject variantJSONObject = new JSONObject();
-                    variantJSONObject.put(AppURLParams.requirement_variant_id, modalVariant.getRequirementVariantId() + "");
-                    variantJSONObject.put(AppURLParams.claim_quantity_id, 0);
-                    variantJSONObject.put(AppURLParams.cod_quantity, modalVariant.getCod() + "");
-                    variantJSONObject.put(AppURLParams.prepaid_quantity, modalVariant.getPrePaid() + "");
-                    variantJSONObject.put(AppURLParams.payfail_quantity, modalVariant.getPayFail() + "");
-                    variantJSONObject.put(AppURLParams.otp_quantity, "");
+                    variantJSONObject.put("requirement_variant_id", modalVariant.getRequirementVariantId() + "");
+                    variantJSONObject.put("pay_fail_variant_id", modalVariant.getVariantId());
+                    variantJSONObject.put("variant_name", modalVariant.getVariantName() + "");
+                    variantJSONObject.put("variant_price", modalVariant.getVariantPrice() + "");
+                    variantJSONObject.put("quantity", modalVariant.getPayFailQuantity() + "");
+
+                    Log.d("serajpayfailsubmit",""+modalVariant.getVariantName());
+                    Log.d("serajpayfailsubmit",""+modalVariant.getVariantPrice());
+                    Log.d("serajpayfailsubmit",""+modalVariant.getPayFailQuantity());
+                    Log.d("serajpayfailsubmit",""+modalVariant.getRequirementVariantId());
+
+
                     variantJSONArray.put(variantJSONObject);
 
                 }
@@ -87,17 +109,26 @@ public class SendpayfailDatatoServer {
 
             siteJSONArray.put(siteJSONObject);
 
-            Log.d("ConfirmClaim", "siteData\n" + siteJSONArray);
+            Log.d("serajpayfailsubmit", "siteData\n" + siteJSONArray.length());
 
 
 
             RequestParameter parameter = new RequestParameter();
-            parameter.setUri(AppURL.getAppURL() + AppURL.getClaimConfirm());
-            parameter.setParam(AppURLParams.claim_requirement_id, mdSiteData.getClaim_confirm_id() + "");
-            parameter.setParam(AppURLParams.requirement_id, mdSiteData.getRequirement_model_id() + "");
+            parameter.setUri(AppURL.getAppURL() + AppURL.getPayfailSubmit());
+            parameter.setParam("claim_confirm_id", claimConfirmId + "");
+            parameter.setParam("total_amount", total_amoumt + "");
+            parameter.setParam("time_left", time_left + "");
+            parameter.setParam("is_cod_available",   "no");
+
+            parameter.setParam("requirement_id" , requirement_id+ "");
+            parameter.setParam("username", username + "");
+            parameter.setParam("password" , password+ "");
+            parameter.setParam("otp_send_on" , otpsendon + "");
+            parameter.setParam("whatsapp_no" , whatsappno + "");
+            parameter.setParam("no_of_orders" , number_of_order + "");
             parameter.setParam(AppURLParams.siteData, siteJSONArray + "");
-            Log.d("ConfirmClaim",parameter.toString());
-            Log.d("ConfirmClaim","Api is  called");
+            Log.d("serajpayfailsubmit",parameter.toString());
+            Log.d("serajpayfailsubmit","Api is  called");
             //sendDataListData(parameter);
             return sendDataListData(parameter);
         } catch (Exception e) {
@@ -112,7 +143,7 @@ public class SendpayfailDatatoServer {
         return true;
     }
     private boolean sendDataListData(RequestParameter parameter) {
-        Log.d("ConfirmClaim","calling api");
+        Log.d("serajpayfailsubmit","calling api");
         try {
             Log.d("serajsss", parameter.getUri() + "?" + parameter.getEncodedParams());
             final LinkedHashMap<String, String> params = parameter.getParams();
@@ -121,17 +152,17 @@ public class SendpayfailDatatoServer {
                 @Override
                 public void onResponse(String response) {
                     respnce = true;
-                    Log.d("ConfirmClaim", "Responce recieved "+response);
+                    Log.d("serajpayfailsubmit", "Responce recieved "+response);
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.d("ConfirmClaim","volley error "+error.getStackTrace());
+                    Log.d("serajpayfailsubmit","volley error "+error.getLocalizedMessage());
                 }
             }) {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
-                    Log.d("ConfirmClaim","Param build");
+                    Log.d("serajpayfailsubmit","Param build");
                     return params;
                 }
 
@@ -148,7 +179,7 @@ public class SendpayfailDatatoServer {
                         }
 
                         headers.put(AppURLParams.Authorization, token + "");
-                        Log.d("ConfirmClaim","token "+token);
+                        Log.d("serajpayfailsubmit","token "+token);
                         return headers;
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -166,7 +197,4 @@ public class SendpayfailDatatoServer {
 
         return respnce;
     }
-
-
-
 }

@@ -122,7 +122,7 @@ public class MdConfirmClaimActivity extends FragmentActivity implements Response
             claimedId = getIntent().getExtras().getString("claim_requirement_id");
             reqId = getIntent().getExtras().getString("requirement_id");
             totalquantity = getIntent().getExtras().getString("total");
-            Log.d("serajdata","ucca req id "+reqId+ " cid "+claimedId);
+            Log.d("mddata","ucca req id "+reqId+ " cid "+claimedId);
 
 
             ShPrefUserDetails.setStringData(this,"totalquantity",totalquantity);

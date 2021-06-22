@@ -55,7 +55,7 @@ public class FlipkartFragment extends Fragment implements View.OnClickListener{
         // Inflate the layout for this fragment
         view=inflater.inflate(R.layout.fragment_flipkart, container, false);
 
-
+        variantList = new ArrayList<>();
         crv=view.findViewById(R.id.claim_rv);
         dealerName=view.findViewById(R.id.tv_dealer);
         quantity=view.findViewById(R.id.tv_quantity);
@@ -65,7 +65,7 @@ public class FlipkartFragment extends Fragment implements View.OnClickListener{
         updatePayfailBtn=view.findViewById(R.id.update);
         sessionManager=new SessionManager(getContext());
         for(int i=0;i<dataList.size();i++){
-            if(dataList.get(i).getSiteName().equalsIgnoreCase("Amazon")){
+            if(dataList.get(i).getSiteName().equalsIgnoreCase("FlipKart")){
                 variantList=dataList.get(i).getModel().get(0).getVariant();
                 dealerName.setText(""+dataList.get(i).getDealerName());
                 modelName.setText(""+dataList.get(i).getModel().get(0).getModelName());
