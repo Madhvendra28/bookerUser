@@ -138,6 +138,7 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
             requiremenr_id=ShPrefUserDetails.getStringData("requirementid",this);
             claim_id=ShPrefUserDetails.getStringData("confirmclaimid",this);
 
+
             Log.d("serajpayfailsubmit","Claim confirm id "+claim_id);
             Log.d("serajpayfailsubmit","requirement id "+requiremenr_id);
             Call<PayFailResponse> call = APIClient.getInterface().getPayfailData(userId,claim_id);

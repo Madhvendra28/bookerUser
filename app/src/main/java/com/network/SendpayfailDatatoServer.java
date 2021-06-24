@@ -98,7 +98,7 @@ public class SendpayfailDatatoServer {
                     variantJSONArray.put(variantJSONObject);
 
                 }
-                siteJSONObject.put(AppURLParams.variant, variantJSONArray);
+                siteJSONObject.put("variant_data", variantJSONArray);
 
             } else {
                 Toast.makeText(context, "No data Found", Toast.LENGTH_SHORT).show();
@@ -109,7 +109,7 @@ public class SendpayfailDatatoServer {
 
             siteJSONArray.put(siteJSONObject);
 
-            Log.d("serajpayfailsubmit", "siteData\n" + siteJSONArray.length());
+            Log.d("mdpayfailsubmit", "siteData\n" + siteJSONArray);
 
 
 
@@ -126,7 +126,7 @@ public class SendpayfailDatatoServer {
             parameter.setParam("otp_send_on" , otpsendon + "");
             parameter.setParam("whatsapp_no" , whatsappno + "");
             parameter.setParam("no_of_orders" , number_of_order + "");
-            parameter.setParam(AppURLParams.siteData, siteJSONArray + "");
+            parameter.setParam("data_list", siteJSONArray + "");
             Log.d("serajpayfailsubmit",parameter.toString());
             Log.d("serajpayfailsubmit","Api is  called");
             //sendDataListData(parameter);
