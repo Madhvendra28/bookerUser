@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 
+import com.adapter.MdModelAdapter;
 import com.adapter.PayFailModalVariantRecyclerAdapter;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
@@ -14,6 +15,7 @@ import com.model.UserClaim;
 import com.model.confirmclaim.MdModel;
 import com.model.confirmclaim.Variant;
 import com.model.payfailModel.Data;
+import com.model.payfailModel.ModelDatum;
 import com.model.payfailModel.PayFailResponse;
 import com.model.payfailModel.VariantDatum;
 import com.network.SendpayfailDatatoServer;
@@ -58,7 +60,7 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
     Data myrdata;
     private Spinner user_claim_spinner_otp_option, user_claim_spinner_nos_order;
     private RadioButton user_claim_radiobutton_my_number, user_claim_radiobutton_other_mobile, user_claim_radiobutton_cod_yes, user_claim_radiobutton_cod_no, user_claim_radiobutton_cod_idk;
-    private RecyclerView user_claim_recycleview_variant;
+    private RecyclerView user_claim_recycleview_model;
 
     private ProgressDialog progress;
     private final String TAG = "PayFailDetails";
@@ -71,18 +73,19 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
     SessionManager sessionManager;
     private Data userClaim;
     private SiteData selectedSiteData;
-//    RecyclerView lin;
-//    Button addModelbutton;
+    MdModelAdapter mdModelAdapter;
+    RecyclerView lin;
+    Button addModelbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_claim_pay_fail_details);
 
-//        lin = findViewById(R.id.user_claim_recycleview_variant);
-//        lin.removeAllViews();
-//        addModelbutton=findViewById(R.id.addModelbutton);
-//
+        //lin = findViewById(R.id.user_claim_recycleview_variant);
+        //lin.removeAllViews();
+        //addModelbutton=findViewById(R.id.addModelbutton);
+
 //        addModelbutton.setOnClickListener(new View.OnClickListener() {
 //            @SuppressLint("ResourceType")
 //            @Override
@@ -117,7 +120,7 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
 
             user_claim_spinner_otp_option = findViewById(R.id.user_claim_spinner_otp_option);
             user_claim_spinner_nos_order = findViewById(R.id.user_claim_spinner_nos_order);
-            user_claim_recycleview_variant = findViewById(R.id.user_claim_recycleview_variant);
+            user_claim_recycleview_model = findViewById(R.id.user_claim_recycleview_model);
 
             user_claim_radiobutton_my_number = findViewById(R.id.user_claim_radiobutton_my_number);
             user_claim_radiobutton_other_mobile = findViewById(R.id.user_claim_radiobutton_other_mobile);
@@ -157,7 +160,7 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
                              myrdata=payFailResponse.getData();
                              setDataInViews(payFailResponse.getData());
                          }
-                         Log.d("serajpayfaildata","response status : "+payFailResponse.getData().getSiteLogo());
+                         //Log.d("serajpayfaildata","response status : "+payFailResponse.getData().getSiteLogo());
                      }
                     // PayFailResponse payFailResponse=response.body();
 
@@ -174,11 +177,12 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
            // userClaim = ob;//sessionManager.getModel();
 //            selectedSiteData = UserClaimConfirmActivity.getActivity().getSelectedSiteData();
 
+            Log.d("serajpayfaildatass","Datafetched");
 
 
         } catch (Exception e) {
-            Log.d("serajpayfaildata","pay fail error 1"+e.getLocalizedMessage());
-            Snackbar.make(findViewById(R.id.coordinatorLayout), "md "+getString(R.string.error_try_later)+" "+e.getLocalizedMessage(), Snackbar.LENGTH_SHORT).show();
+            Log.d("serajpayfaildatass","pay fail error 1"+e.getLocalizedMessage());
+            Snackbar.make(findViewById(R.id.coordinatorLayout), "md "+e.getLocalizedMessage(), Snackbar.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
@@ -186,30 +190,31 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
     private void setDataInViews(Data mydata) {
         try {
             if (mydata != null) {
-                Log.d("serajpayfaildata","Setting data error d " +mydata.getModelData().get(0).getModelName());
+                Log.d("mdpayfailrv","Setting data error d ");
                 user_claim_textview_dealer_can_pay.setText(""+mydata.getDealerCanPay());
                 //String totalQuantity= ShPrefUserDetails.getStringData("totalquantity",this);
                user_claim_textview_left_slot.setText(""+mydata.getLeftSlot());
                 String sitename=ShPrefUserDetails.getStringData("sitename",this);
                 user_claim_textview_site_name.setText(""+sitename);
-                user_claim_textview_modal_name.setText(""+mydata.getModelData().get(0).getModelName());
+//                user_claim_textview_modal_name.setText(""+mydata.getModelData().get(0).getModelName());
 
                 otpOnWhatsapp = AppURLParams.statusVal0;
                 codAvailable = AppURLParams.statusVal1;
-                 Log.d("mdpayfail","pay fail user claim not emplty");
-                List<VariantDatum> modalVariantArrayList = mydata.getModelData().get(0).getVariantData();
-                if (modalVariantArrayList != null && modalVariantArrayList.size() > 0) {
-                    user_claim_recycleview_variant.setVisibility(View.VISIBLE);
+                 Log.d("mdpayfailrv","pay fail user claim not emplty");
 
-                    user_claim_recycleview_variant.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-                    Log.d("serajpayfaildata","Setting adapter");
-                     adapter = new PayFailModalVariantRecyclerAdapter(this, modalVariantArrayList);
+                List<ModelDatum> modelData = mydata.getModelData();
+                if (modelData != null && modelData.size() > 0) {
+                    user_claim_recycleview_model.setVisibility(View.VISIBLE);
 
-                    user_claim_recycleview_variant.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();
+                    user_claim_recycleview_model.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+                    Log.d("mdpayfailrv","Setting adapter size = "+modelData.size());
+                     mdModelAdapter = new MdModelAdapter(this,modelData);
+
+                    user_claim_recycleview_model.setAdapter(adapter);
+                    mdModelAdapter.notifyDataSetChanged();
 
                 } else {
-                    user_claim_recycleview_variant.setVisibility(View.GONE);
+                    user_claim_recycleview_model.setVisibility(View.GONE);
                 }
 
 
@@ -219,8 +224,8 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
                 return;
             }
         } catch (Exception e) {
-            Log.d("serajpayfaildata","pay fail error 2 " +e.getLocalizedMessage());
-            Snackbar.make(coordinatorLayout, getString(R.string.error_try_later)+" "+e.getLocalizedMessage(), Snackbar.LENGTH_SHORT).show();
+            Log.d("mdpayfailrv","pay fail error 2 " +e.getLocalizedMessage());
+            Snackbar.make(coordinatorLayout,"Sorry Md "+" "+e.getLocalizedMessage(), Snackbar.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }

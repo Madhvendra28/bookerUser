@@ -5,15 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".UserClaimPayFailDetailsActivity"
-    tools:showIn="@layout/activity_user_claim_pay_fail_details">
+    tools:context=".MdPayFail">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="243dp">
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -311,11 +308,19 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/open_sans_semibold"
                     android:gravity="left|center_vertical"
-                    android:id="@+id/user_claim_textview_modal_name"
                     android:text="@string/modal_name"
                     android:textColor="@color/textColorBlack"
                     android:textSize="@dimen/mini_text_size" />
 
+                <TextView
+                    android:id="@+id/user_claim_textview_modal_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/barlow_condensed_semobold"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/std2_text_size" />
             </LinearLayout>
 
             <LinearLayout
@@ -324,36 +329,12 @@
                 android:orientation="horizontal">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/user_claim_recycleview_model"
+                    android:id="@+id/user_claim_recycleview_variant"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:scrollbars="none" />
-
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-
-                    android:fontFamily="@font/barlow_condensed_semobold"
-                    android:gravity="left|center_vertical"
-                    android:textColor="@color/textColorBlack"
-                    android:textSize="@dimen/std2_text_size" />
             </LinearLayout>
-
-<!--            <LinearLayout-->
-<!--                android:id="@+id/anything"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="vertical"/>-->
-<!--            <Button-->
-<!--                android:layout_width="230dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="+ Add another model"-->
-<!--                android:id="@+id/addModelbutton"-->
-<!--                android:layout_gravity="center"-->
-<!--                />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -380,43 +361,6 @@
                     android:gravity="left|center_vertical"
                     android:textColor="@color/textColorBlack"
                     android:textSize="@dimen/std2_text_size" />
-
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/user_claim_radiobutton_cod_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:checked="true"
-                        android:text="@string/yes"
-                        android:textColor="@android:color/background_dark"
-                        android:textSize="@dimen/std_text_size"
-                        android:textStyle="bold" />
-
-                    <RadioButton
-                        android:id="@+id/user_claim_radiobutton_cod_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/no"
-                        android:textColor="@android:color/background_dark"
-                        android:textSize="@dimen/std_text_size"
-                        android:textStyle="bold" />
-
-                    <RadioButton
-                        android:id="@+id/user_claim_radiobutton_cod_idk"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/idk"
-                        android:textColor="@android:color/background_dark"
-                        android:textSize="@dimen/std_text_size"
-                        android:textStyle="bold" />
-                </RadioGroup>
             </LinearLayout>
 
             <LinearLayout
@@ -475,6 +419,42 @@
                     android:textColor="@color/textColorBlack"
                     android:textSize="@dimen/std_text_size" />
 
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/user_claim_radiobutton_cod_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="@string/yes"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="@dimen/std_text_size"
+                        android:textStyle="bold" />
+
+                    <RadioButton
+                        android:id="@+id/user_claim_radiobutton_cod_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/no"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="@dimen/std_text_size"
+                        android:textStyle="bold" />
+
+                    <RadioButton
+                        android:id="@+id/user_claim_radiobutton_cod_idk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/idk"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="@dimen/std_text_size"
+                        android:textStyle="bold" />
+                </RadioGroup>
             </LinearLayout>
 
             <Button
