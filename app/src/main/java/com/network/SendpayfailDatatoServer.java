@@ -17,6 +17,7 @@ import com.bookkr.user.UserClaimPayFailDetailsActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.model.RequestParameter;
 
+import com.model.payfailModel.ModelDatum;
 import com.model.payfailModel.VariantDatum;
 import com.preferences.ShPrefUserDetails;
 import com.utils.AppURL;
@@ -34,15 +35,14 @@ import java.util.Map;
 public class SendpayfailDatatoServer {
 
     Context context;
-    List<VariantDatum> variantDatumList;
+    List<ModelDatum> modelData;;
     UserClaimPayFailDetailsActivity activity;
-    String claimConfirmId,requirement_id,username,password,otpsendon,whatsappno,number_of_order,total_amoumt,time_left,is_cod_available,pay_fail_model_id,requirement_model_id,model_name;
+    String claimConfirmId,requirement_id,username,password,otpsendon,whatsappno,number_of_order,total_amoumt,time_left,is_cod_available;
     boolean respnce;
 
-
-    public SendpayfailDatatoServer(Context context, List<VariantDatum> variantDatumList, UserClaimPayFailDetailsActivity activity, String claimConfirmId, String requirement_id, String username, String password, String otpsendon, String whatsappno, String number_of_order, String total_amoumt, String time_left, String is_cod_available, String pay_fail_model_id, String requirement_model_id, String model_name) {
+    public SendpayfailDatatoServer(Context context, List<ModelDatum> modelData, UserClaimPayFailDetailsActivity activity, String claimConfirmId, String requirement_id, String username, String password, String otpsendon, String whatsappno, String number_of_order, String total_amoumt, String time_left, String is_cod_available, boolean respnce) {
         this.context = context;
-        this.variantDatumList = variantDatumList;
+        this.modelData = modelData;
         this.activity = activity;
         this.claimConfirmId = claimConfirmId;
         this.requirement_id = requirement_id;
@@ -54,15 +54,12 @@ public class SendpayfailDatatoServer {
         this.total_amoumt = total_amoumt;
         this.time_left = time_left;
         this.is_cod_available = is_cod_available;
-        this.pay_fail_model_id = pay_fail_model_id;
-        this.requirement_model_id = requirement_model_id;
-        this.model_name = model_name;
-        this.respnce=false;
+        this.respnce = respnce;
     }
 
     public boolean sendPayFailData(){
 
-        if (variantDatumList.equals(null)){
+        if (modelData.equals(null)){
             return false;
         }
 
@@ -71,44 +68,47 @@ public class SendpayfailDatatoServer {
             Log.d("serajpayfailsubmit","Method called");
 
             JSONArray siteJSONArray = new JSONArray();
-            JSONObject siteJSONObject = new JSONObject();
-            siteJSONObject.put("pay_fail_model_id", pay_fail_model_id + "");
-            siteJSONObject.put("requirement_model_id", requirement_model_id + "");
-            siteJSONObject.put("model_name", model_name );
+
+            for (int k = 0; k < modelData.size(); k++) {
+
+                JSONObject siteJSONObject = new JSONObject();
+                siteJSONObject.put("pay_fail_model_id", "" + requirement_id);
+                siteJSONObject.put("requirement_model_id", "" + modelData.get(k).getRequirementModelId());
+                siteJSONObject.put("model_name", "" + modelData.get(k).getModelName());
 
 
-            List<VariantDatum> siteVariantDataArrayList =variantDatumList;
-            if (siteVariantDataArrayList != null && siteVariantDataArrayList.size() > 0) {
-                JSONArray variantJSONArray = new JSONArray();
-                for (int j = 0; j < siteVariantDataArrayList.size(); j++) {
-                    VariantDatum modalVariant = siteVariantDataArrayList.get(j);
-                    JSONObject variantJSONObject = new JSONObject();
-                    variantJSONObject.put("requirement_variant_id", modalVariant.getRequirementVariantId() + "");
-                    variantJSONObject.put("pay_fail_variant_id", modalVariant.getVariantId());
-                    variantJSONObject.put("variant_name", modalVariant.getVariantName() + "");
-                    variantJSONObject.put("variant_price", modalVariant.getVariantPrice() + "");
-                    variantJSONObject.put("quantity", modalVariant.getPayFailQuantity() + "");
+                List<VariantDatum> siteVariantDataArrayList = modelData.get(k).getVariantData();
+                if (siteVariantDataArrayList != null && siteVariantDataArrayList.size() > 0) {
+                    JSONArray variantJSONArray = new JSONArray();
+                    for (int j = 0; j < siteVariantDataArrayList.size(); j++) {
+                        VariantDatum modalVariant = siteVariantDataArrayList.get(j);
+                        JSONObject variantJSONObject = new JSONObject();
+                        variantJSONObject.put("requirement_variant_id", modalVariant.getRequirementVariantId() + "");
+                        variantJSONObject.put("pay_fail_variant_id", modalVariant.getVariantId());
+                        variantJSONObject.put("variant_name", modalVariant.getVariantName() + "");
+                        variantJSONObject.put("variant_price", modalVariant.getVariantPrice() + "");
+                        variantJSONObject.put("quantity", modalVariant.getPayFailQuantity() + "");
 
-                    Log.d("serajpayfailsubmit",""+modalVariant.getVariantName());
-                    Log.d("serajpayfailsubmit",""+modalVariant.getVariantPrice());
-                    Log.d("serajpayfailsubmit",""+modalVariant.getPayFailQuantity());
-                    Log.d("serajpayfailsubmit",""+modalVariant.getRequirementVariantId());
+                        Log.d("serajpayfailsubmit", "" + modalVariant.getVariantName());
+                        Log.d("serajpayfailsubmit", "" + modalVariant.getVariantPrice());
+                        Log.d("serajpayfailsubmit", "" + modalVariant.getPayFailQuantity());
+                        Log.d("serajpayfailsubmit", "" + modalVariant.getRequirementVariantId());
 
 
-                    variantJSONArray.put(variantJSONObject);
+                        variantJSONArray.put(variantJSONObject);
+
+                    }
+                    siteJSONObject.put("variant_data", variantJSONArray);
+
+
+                } else {
+                    Toast.makeText(context, "No data Found", Toast.LENGTH_SHORT).show();
 
                 }
-                siteJSONObject.put("variant_data", variantJSONArray);
 
-            } else {
-                Toast.makeText(context, "No data Found", Toast.LENGTH_SHORT).show();
 
+                siteJSONArray.put(siteJSONObject);
             }
-
-
-
-            siteJSONArray.put(siteJSONObject);
-
             Log.d("mdpayfailsubmit", "siteData\n" + siteJSONArray);
 
 

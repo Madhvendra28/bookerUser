@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import com.adapter.MdModelAdapter;
+import com.adapter.MdPayfailDataViewAdapter;
 import com.adapter.PayFailModalVariantRecyclerAdapter;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
@@ -56,6 +57,8 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
     private TextView user_claim_textview_dealer_can_pay, user_claim_textview_left_slot, user_claim_textview_site_name, user_claim_textview_modal_name, user_claim_textview_total_amount;
     private EditText user_claim_edittext_login_id, user_claim_edittext_password, user_claim_edittext_other_number, user_claim_textview_time_left;
     MdModel ob;
+
+    List<ModelDatum> modelData;
 
     Data myrdata;
     private Spinner user_claim_spinner_otp_option, user_claim_spinner_nos_order;
@@ -200,18 +203,18 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
 
                 otpOnWhatsapp = AppURLParams.statusVal0;
                 codAvailable = AppURLParams.statusVal1;
-                 Log.d("mdpayfailrv","pay fail user claim not emplty");
+                 Log.d("mdpayfailrv","pay fail user claim not empty");
 
-                List<ModelDatum> modelData = mydata.getModelData();
+                modelData = mydata.getModelData();
                 if (modelData != null && modelData.size() > 0) {
                     user_claim_recycleview_model.setVisibility(View.VISIBLE);
 
                     user_claim_recycleview_model.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
                     Log.d("mdpayfailrv","Setting adapter size = "+modelData.size());
-                     mdModelAdapter = new MdModelAdapter(this,modelData);
+                     MdPayfailDataViewAdapter madapter = new MdPayfailDataViewAdapter(modelData,this);
 
-                    user_claim_recycleview_model.setAdapter(adapter);
-                    mdModelAdapter.notifyDataSetChanged();
+                    user_claim_recycleview_model.setAdapter(madapter);
+                   // mdModelAdapter.notifyDataSetChanged();
 
                 } else {
                     user_claim_recycleview_model.setVisibility(View.GONE);
@@ -376,42 +379,45 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
                 Snackbar.make(coordinatorLayout, getString(R.string.error_select_cod_available), Snackbar.LENGTH_SHORT).show();
                 return;
             }
-
-            List<VariantDatum> siteVariantDataArrayList = adapter.getVarientData();
             int totalPayFailQuantity = 0;
-            if (siteVariantDataArrayList != null && siteVariantDataArrayList.size() > 0) {
-                for (int i = 0; i < siteVariantDataArrayList.size(); i++) {
-                    VariantDatum siteVariantData = siteVariantDataArrayList.get(i);
-                    if (siteVariantData.getPayFailQuantity().equals("")) {
+            for (int k = 0; k < modelData.size(); k++) {
+                List<VariantDatum> siteVariantDataArrayList =  modelData.get(k).getVariantData();
+
+                if (siteVariantDataArrayList != null && siteVariantDataArrayList.size() > 0) {
+                    for (int i = 0; i < siteVariantDataArrayList.size(); i++) {
+                        VariantDatum siteVariantData = siteVariantDataArrayList.get(i);
+                        if (siteVariantData.getPayFailQuantity().equals("")) {
+                            Snackbar.make(coordinatorLayout, getString(R.string.error_empty_payfail_quantity), Snackbar.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        int qty = Integer.parseInt(siteVariantData.getPayFailQuantity());
+                        totalPayFailQuantity += qty;
+
+                        Log.d("serajpayfaildata", "" + totalPayFailQuantity);
+                    }
+
+                    if (totalPayFailQuantity == 0) {
                         Snackbar.make(coordinatorLayout, getString(R.string.error_empty_payfail_quantity), Snackbar.LENGTH_SHORT).show();
                         return;
                     }
 
-                    int qty = Integer.parseInt(siteVariantData.getPayFailQuantity());
-                    totalPayFailQuantity += qty;
-
-                    Log.d("serajpayfaildata",""+totalPayFailQuantity);
-                }
-
-                if (totalPayFailQuantity == 0) {
-                    Snackbar.make(coordinatorLayout, getString(R.string.error_empty_payfail_quantity), Snackbar.LENGTH_SHORT).show();
+                } else {
+                    Snackbar.make(coordinatorLayout, getString(R.string.error_no_data_found), Snackbar.LENGTH_SHORT).show();
                     return;
                 }
-
-            } else {
-                Snackbar.make(coordinatorLayout, getString(R.string.error_no_data_found), Snackbar.LENGTH_SHORT).show();
-                return;
             }
-
             int total = 0;
-            List<VariantDatum> variantDataArrayList = adapter.getVarientData();
-            if (variantDataArrayList != null && variantDataArrayList.size() > 0) {
-                for (int i = 0; i < variantDataArrayList.size(); i++) {
-                    VariantDatum siteVariantData = variantDataArrayList.get(i);
-                    Log.d(TAG, siteVariantData.getPayFailQuantity() + "|" + "5");
-                    if (!siteVariantData.getPayFailQuantity().equals("")) {
-                        total += Integer.parseInt(siteVariantData.getPayFailQuantity()) * Integer.parseInt(""+siteVariantData.getVariantPrice());
-                        Log.d("serajpayfaildata",""+total);
+            for (int l = 0; l < modelData.size(); l++) {
+                List<VariantDatum> variantDataArrayList = modelData.get(l).getVariantData();
+                if (variantDataArrayList != null && variantDataArrayList.size() > 0) {
+                    for (int i = 0; i < variantDataArrayList.size(); i++) {
+                        VariantDatum siteVariantData = variantDataArrayList.get(i);
+                        Log.d(TAG, siteVariantData.getPayFailQuantity() + "|" + "5");
+                        if (!siteVariantData.getPayFailQuantity().equals("")) {
+                            total += Integer.parseInt(siteVariantData.getPayFailQuantity()) * Integer.parseInt("" + siteVariantData.getVariantPrice());
+                            Log.d("serajpayfaildata", "" + total);
+                        }
                     }
                 }
             }
@@ -438,10 +444,9 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
 
             //sendDatatoServer();
 
-            SendpayfailDatatoServer sendpayfailDatatoServer=new SendpayfailDatatoServer(getApplicationContext(),adapter.getVarientData(),
-                    this,claim_id+"",requiremenr_id+"",loginId,password,otpSendOn,otherNumber,nosOrders,total+"",
-                    timeMins,codAvailable,myrdata.getModelData().get(0).getRequirementModelId()+"",""+myrdata.getModelData().get(0).getRequirementModelId(),
-                    ""+myrdata.getModelData().get(0).getModelName());
+            SendpayfailDatatoServer sendpayfailDatatoServer=new SendpayfailDatatoServer(getApplicationContext(),modelData,
+                    this,claim_id+"",requiremenr_id+"",""+loginId,""+password,otpSendOn,otherNumber,nosOrders,total+"",
+                    timeMins,codAvailable,false);
 
             boolean status = sendpayfailDatatoServer.sendPayFailData();
 
@@ -489,5 +494,11 @@ public class UserClaimPayFailDetailsActivity extends AppCompatActivity implement
             progress.dismiss();
         }
         Snackbar.make(coordinatorLayout, getString(R.string.error_try_later), Snackbar.LENGTH_SHORT).show();
+    }
+
+    public void setQuantity(int mpos,int vpos,int quantity){
+
+        modelData.get(mpos).getVariantData().get(vpos).setPayFailQuantity(""+quantity);
+
     }
 }

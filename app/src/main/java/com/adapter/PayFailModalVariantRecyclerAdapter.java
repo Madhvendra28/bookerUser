@@ -25,10 +25,12 @@ public class PayFailModalVariantRecyclerAdapter extends RecyclerView.Adapter<Rec
 
     private Activity activity;
     private List<VariantDatum> list;
+    private int mpos;
 
-    public PayFailModalVariantRecyclerAdapter(Activity activity, List<VariantDatum> list) {
+    public PayFailModalVariantRecyclerAdapter(Activity activity, List<VariantDatum> list, int mpos) {
         this.activity = activity;
         this.list = list;
+        this.mpos = mpos;
     }
 
     @NonNull
@@ -88,6 +90,7 @@ public class PayFailModalVariantRecyclerAdapter extends RecyclerView.Adapter<Rec
                         String string = s.toString();
                         modalVariant.setPayFailQuantity(string);
                         ((UserClaimPayFailDetailsActivity) activity).updateAmountToPaid();
+                        ((UserClaimPayFailDetailsActivity) activity).setQuantity(mpos,position,Integer.parseInt(string));
                     }
                 });
             } catch (Exception e) {
